@@ -1,0 +1,5 @@
+/* Reset CSS Default Values */
+* {
+  margin: 0;
+  padding: 0;
+}
