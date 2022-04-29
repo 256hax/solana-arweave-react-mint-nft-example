@@ -7,6 +7,7 @@ import {
   Box,
   Grid,
   Button,
+  Typography,
 } from '@mui/material';
 
 // For "Property 'solana' does not exist on type 'Window & typeof globalThis'" error.
@@ -69,12 +70,17 @@ export const MintNft = () => {
   }
 
   return(
-    <Box sx={{ mb: 4 }}>
-      <Grid container>
-        <Grid item xs={4}>
-          <Button variant="contained" color="secondary" onClick={sendTransaction}>Mint NFT</Button>
+    <Box>
+      <Box sx={{ mb: 4 }}>
+        <Grid container>
+          <Grid item xs={4}>
+            <Button variant="contained" color="secondary" onClick={sendTransaction}>Mint NFT</Button>
+          </Grid>
         </Grid>
-      </Grid>
+      </Box>
+      <Box>
+        <Typography>Note: Please don't forget Creators Address(= your address) in Metadata.</Typography>
+      </Box>
     </Box>
   );
 }

@@ -197,16 +197,17 @@ export const UploadMetadata = () => {
         <Divider textAlign="left" sx={{mt: 2, mb: 2}}>Creators</Divider>
 
         <TextField
-          disabled
           value={valuePropertiesCreatorsAddress}
           onChange={event => setPropertiesCreatorsAddress(event.target.value)}
-          label="Properties Creators Address"
+          label="Creators Address"
+          color="secondary"
+          focused
         />
         <Button onClick={setPhantomAddress}>Set My Address</Button>
         <TextField
           value={valuePropertiesCreatorsShare}
           onChange={event => setPropertiesCreatorsShare(event.target.value)}
-          label="Properties Creators Share(%)"
+          label="Creators Share(%)"
         />
 
         <Typography>Note: Creators Address must be your address(Phantom).</Typography>
