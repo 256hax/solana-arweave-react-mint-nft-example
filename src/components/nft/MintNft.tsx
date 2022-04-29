@@ -1,8 +1,13 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { actions } from '@metaplex/js';
 import { clusterApiUrl, Connection, } from '@solana/web3.js';
 import { AnchorProvider } from "@project-serum/anchor";
 import { arTransactionIdContext } from '../../providers/ArTransactionId';
+import {
+  Box,
+  Grid,
+  Button,
+} from '@mui/material';
 
 // For "Property 'solana' does not exist on type 'Window & typeof globalThis'" error.
 interface Window {
@@ -64,8 +69,12 @@ export const MintNft = () => {
   }
 
   return(
-    <div>
-      <button onClick={sendTransaction}>Mint NFT</button>
-    </div>
+    <Box sx={{ mb: 4 }}>
+      <Grid container>
+        <Grid item xs={4}>
+          <Button variant="contained" color="secondary" onClick={sendTransaction}>Mint NFT</Button>
+        </Grid>
+      </Grid>
+    </Box>
   );
 }

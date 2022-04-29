@@ -1,5 +1,5 @@
 import { Button } from '@mui/material';
-import React, { useState, useContext, useEffect } from 'react';
+import { useState, useContext } from 'react';
 import {
   Box,
   Input,
@@ -10,9 +10,11 @@ import {
   Divider,
   TextField,
   Typography,
+  Grid,
 } from '@mui/material';
 import Arweave from 'arweave';
 import { arTransactionIdContext } from '../../providers/ArTransactionId';
+import { ArweaveTools } from './ArweaveTools';
 
 // For "Property 'arweaveWallet' does not exist on type 'Window'." error.
 interface Window {
@@ -23,11 +25,6 @@ declare var window: Window
 
 
 export const UploadMetadata = () => {
-
-  useEffect(() => {
-    // const phantomAddress = getPhantomAddress();
-  });
-
   const arweave = Arweave.init({
     // --- Localnet ---
     // host: '127.0.0.1',
@@ -45,9 +42,9 @@ export const UploadMetadata = () => {
   const [blockId, setBlockId] = useState('not yet mined');
 
   // --- Metadata Summary ---
-  const [valueName, setName] = React.useState('');
-  const [valueSymbol, setSymbol] = React.useState('');
-  const [valueDescription, setDescription] = React.useState('');
+  const [valueName, setName] = useState('');
+  const [valueSymbol, setSymbol] = useState('');
+  const [valueDescription, setDescription] = useState('');
   const [valueSellerFeeBasisPoints, setSellerFeeBasisPoints] = useState('0');
   const [valueImage, setImage] = useState('');
   const [valueExternalUrl, setExternalUrl] = useState('');
@@ -118,28 +115,6 @@ export const UploadMetadata = () => {
     }
   }
 
-  async function mineTransaction() {
-    const response = await arweave.api.get('mine/');
-    console.log(response);
-
-    const transaction = await arweave.transactions.get(valueArTransactionId);
-    setBlockId(transaction.block);
-  }
-
-  async function getTransaction() {
-    const transaction = await arweave.transactions.get(valueArTransactionId);
-    console.log(transaction);
-  }
-
-  async function getTransactionData() {
-    const tx_api_get_base64 = await arweave.api.get('/tx/' + valueArTransactionId + '/data');
-    console.log('Base64 Data =>', tx_api_get_base64.data);
-
-    const tx_api_get_decoded = await arweave.api.get('/' + valueArTransactionId);
-    console.log('Decoded Data =>', tx_api_get_decoded.data);
-  }
-
-
   return (
     <Box>
       <Box>
@@ -150,6 +125,7 @@ export const UploadMetadata = () => {
           <a href="https://explorer.solana.com/address/9ARngHhVaCtH5JFieRdSS5Y8cdZk2TMF4tfGSWFB9iSK/metadata" target="_blank">Solana Explorer</a>
         </Typography>
       </Box>
+
       <Box
         component="form"
         sx={{
@@ -161,49 +137,90 @@ export const UploadMetadata = () => {
 
         <Divider textAlign="left" sx={{mt: 2, mb: 2}}>Summary</Divider>
 
-        <TextField value={valueName} onChange={event => setName(event.target.value)} label="Name" />
-        <TextField value={valueSymbol} onChange={event => setSymbol(event.target.value)} label="Symbol" />
-        <TextField value={valueDescription} onChange={event => setDescription(event.target.value)} label="Description" />
-        <TextField value={valueSellerFeeBasisPoints} onChange={event => setDescription(event.target.value)} label="Seller Fee(100 = 1%)" />
-        <TextField value={valueImage} onChange={event => setImage(event.target.value)} label="Image URL" />
-        <TextField value={valueExternalUrl} onChange={event => setExternalUrl(event.target.value)} label="External Url" />
+        <TextField
+          value={valueName}
+          onChange={event => setName(event.target.value)}
+          label="Name"
+        />
+        <TextField
+          value={valueSymbol}
+          onChange={event => setSymbol(event.target.value)}
+          label="Symbol"
+        />
+        <TextField
+          value={valueDescription}
+          onChange={event => setDescription(event.target.value)}
+          label="Description"
+        />
+        <TextField
+          value={valueSellerFeeBasisPoints}
+          onChange={event => setDescription(event.target.value)}
+          label="Seller Fee(100 = 1%)"
+        />
+        <TextField
+          value={valueImage}
+          onChange={event => setImage(event.target.value)}
+          label="Image URL"
+        />
+        <TextField
+          value={valueExternalUrl}
+          onChange={event => setExternalUrl(event.target.value)}
+          label="External Url"
+        />
 
         <Divider textAlign="left" sx={{mt: 2, mb: 2}}>Collections</Divider>
 
-        <TextField value={valueCollectionName} onChange={event => setCollectionName(event.target.value)} label="Collection Name" />
-        <TextField value={valueCollectionFamily} onChange={event => setCollectionFamily(event.target.value)} label="Collection Family" />
+        <TextField
+          value={valueCollectionName}
+          onChange={event => setCollectionName(event.target.value)}
+          label="Collection Name"
+        />
+        <TextField
+          value={valueCollectionFamily}
+          onChange={event => setCollectionFamily(event.target.value)}
+          label="Collection Family"
+        />
 
         <Divider textAlign="left" sx={{mt: 2, mb: 2}}>Attributes</Divider>
 
-        <TextField value={valueAttributesTraitType} onChange={event => setAttributesTraitType(event.target.value)} label="Attributes Trait Type" />
-        <TextField value={valueAttributesTraitValue} onChange={event => setAttributesTraitValue(event.target.value)} label="Attributes Trait Value" />
+        <TextField
+          value={valueAttributesTraitType}
+          onChange={event => setAttributesTraitType(event.target.value)}
+          label="Attributes Trait Type"
+        />
+        <TextField
+          value={valueAttributesTraitValue}
+          onChange={event => setAttributesTraitValue(event.target.value)}
+          label="Attributes Trait Value"
+        />
 
         <Divider textAlign="left" sx={{mt: 2, mb: 2}}>Creators</Divider>
 
-        <TextField value={valuePropertiesCreatorsAddress} onChange={event => setPropertiesCreatorsAddress(event.target.value)} label="Properties Creators Address" />
-        <Button onClick={setPhantomAddress}>set My Address</Button>
-        <TextField value={valuePropertiesCreatorsShare} onChange={event => setPropertiesCreatorsShare(event.target.value)} label="Properties Creators Share(%)" />
-        <p>Note: Creators Address must be your address.</p>
+        <TextField
+          disabled
+          value={valuePropertiesCreatorsAddress}
+          onChange={event => setPropertiesCreatorsAddress(event.target.value)}
+          label="Properties Creators Address"
+        />
+        <Button onClick={setPhantomAddress}>Set My Address</Button>
+        <TextField
+          value={valuePropertiesCreatorsShare}
+          onChange={event => setPropertiesCreatorsShare(event.target.value)}
+          label="Properties Creators Share(%)"
+        />
+
+        <Typography>Note: Creators Address must be your address(Phantom).</Typography>
       </Box>
 
+      <Box sx={{ mb: 4 }}>
+        <Grid container>
+          <Grid item xs={4}>
+            <Button variant="contained" color="secondary" onClick={sendTransaction}>Send Transaction(wait a sec)</Button>
+          </Grid>
+        </Grid>
+      </Box>
 
-
-      <div>
-        <div>
-          <button onClick={sendTransaction}>Send Transaction(wait a sec)</button>
-        </div>
-        <div>
-          <button onClick={mineTransaction}>Mine Transaction</button>
-          <button onClick={getTransaction}>Get Transaction</button>
-          <button onClick={getTransactionData}>Get Transaction Data</button>
-          <button onClick={setPhantomAddress}>getPhantomAddress</button>
-          <div>
-            Sent Transaction:
-            <div>Transaction ID: {valueArTransactionId}</div>
-            <div>Block ID: {blockId}</div>
-          </div>
-        </div>
-      </div>
+      <ArweaveTools />
     </Box>
   );
 }
