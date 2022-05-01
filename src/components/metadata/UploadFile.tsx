@@ -32,16 +32,20 @@ export const UploadFile = () => {
    };
 
   async function sendTransaction() {
-    const data = await valueFile?.arrayBuffer();
+    if(valueFile) {
+      const data = await valueFile.arrayBuffer();
 
-    const transaction = await arweave.createTransaction({ data: data });
-    await arweave.transactions.sign(transaction);
-    console.log('Transaction =>', transaction);
+      const transaction = await arweave.createTransaction({ data: data });
+      await arweave.transactions.sign(transaction);
+      console.log('Transaction =>', transaction);
 
-    const uploader = await arweave.transactions.getUploader(transaction);
-    while (!uploader.isComplete) {
-      await uploader.uploadChunk();
-      console.log(`${uploader.pctComplete}% complete, ${uploader.uploadedChunks}/${uploader.totalChunks}`);
+      const uploader = await arweave.transactions.getUploader(transaction);
+      while (!uploader.isComplete) {
+        await uploader.uploadChunk();
+        console.log(`${uploader.pctComplete}% complete, ${uploader.uploadedChunks}/${uploader.totalChunks}`);
+      }
+    } else {
+      console.log('Undefined image');
     }
   }
 
