@@ -60,6 +60,9 @@ export const UploadFile = () => {
           <Typography>(Optional) Upload Image</Typography>
         </AccordionSummary>
         <AccordionDetails>
+          <Box sx={{ mb: 2 }}>
+            <Typography>Upload image before Send Transaction.</Typography>
+          </Box>
           <Grid container>
             <Grid item xs={5}>
               <input type="file" onChange={changeHandler} />

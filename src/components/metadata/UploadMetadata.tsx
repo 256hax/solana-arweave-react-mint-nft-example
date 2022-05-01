@@ -119,7 +119,7 @@ export const UploadMetadata = () => {
     <Box>
       <Box>
         <Typography>
-          Input Example:&nbsp;
+          Upload Metadata to Arweave. Input Example:&nbsp;
           <a href="https://arweave.net/3wXyF1wvK6ARJ_9ue-O58CMuXrz5nyHEiPFQ6z5q02E" target="_blank">Arweave</a>
           &nbsp;|&nbsp;
           <a href="https://explorer.solana.com/address/9ARngHhVaCtH5JFieRdSS5Y8cdZk2TMF4tfGSWFB9iSK/metadata" target="_blank">Solana Explorer</a>

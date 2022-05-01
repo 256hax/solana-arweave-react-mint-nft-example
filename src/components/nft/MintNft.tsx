@@ -71,6 +71,11 @@ export const MintNft = () => {
 
   return(
     <Box>
+      <Box sx={{ mb:3 }}>
+        <Typography>
+          Mint NFT on Solana Chain.
+        </Typography>
+      </Box>
       <Box sx={{ mb: 4 }}>
         <Grid container>
           <Grid item xs={4}>
@@ -79,7 +84,7 @@ export const MintNft = () => {
         </Grid>
       </Box>
       <Box>
-        <Typography>Note: Please don't forget Creators Address(= your address) in Metadata.</Typography>
+        <Typography>Note: Mint only allows if Creators Address equal to Your Address(Phantom) in Metadata.</Typography>
       </Box>
     </Box>
   );
