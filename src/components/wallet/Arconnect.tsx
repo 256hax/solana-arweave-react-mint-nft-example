@@ -15,8 +15,7 @@ export const Arconnect = () => {
     // port: 1984,
     // protocol: 'http'
 
-    // --- Testnet ---
-    // (Note: Tesnet powered by https://redstone.finance/)
+    // --- Testnet powered by https://redstone.finance ---
     host: 'testnet.redstone.tools',
     port: 443,
     protocol: 'https'
@@ -47,6 +46,7 @@ export const Arconnect = () => {
     const balance = await arweave.wallets.getBalance(address);
     const ar = arweave.ar.winstonToAr(balance);
 
+    console.log(balance);
     console.log(ar, 'AR');
   }
 

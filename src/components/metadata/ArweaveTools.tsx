@@ -19,8 +19,7 @@ export const ArweaveTools = () => {
     // port: 1984,
     // protocol: 'http'
 
-    // --- Testnet ---
-    // (Note: Tesnet powered by https://redstone.finance/)
+    // --- Testnet powered by https://redstone.finance ---
     host: 'testnet.redstone.tools',
     port: 443,
     protocol: 'https'
@@ -52,14 +51,14 @@ export const ArweaveTools = () => {
 
 
   return (
-    <Box>
+    <Box sx={{ mt: 1}}>
       <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography>ArWeave Tools for Local(ArLocal)</Typography>
+          <Typography>(Optional) ArWeave Tools for Local(ArLocal)</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Grid container>

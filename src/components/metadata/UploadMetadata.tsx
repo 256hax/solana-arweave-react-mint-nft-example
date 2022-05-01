@@ -15,6 +15,7 @@ import {
 import Arweave from 'arweave';
 import { arTransactionIdContext } from '../../providers/ArTransactionId';
 import { ArweaveTools } from './ArweaveTools';
+import { UploadFile } from './UploadFile';
 
 // For "Property 'arweaveWallet' does not exist on type 'Window'." error.
 interface Window {
@@ -32,7 +33,6 @@ export const UploadMetadata = () => {
     // protocol: 'http'
 
     // --- Testnet ---
-    // (Note: Tesnet powered by https://redstone.finance/)
     host: 'testnet.redstone.tools',
     port: 443,
     protocol: 'https'
@@ -221,6 +221,7 @@ export const UploadMetadata = () => {
         </Grid>
       </Box>
 
+      <UploadFile />
       <ArweaveTools />
     </Box>
   );
