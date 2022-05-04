@@ -1,5 +1,5 @@
 // Source: https://github.com/solana-labs/wallet-adapter
-import { FC, useMemo } from 'react';
+import { Fragment, FC, useMemo } from 'react';
 import { ConnectionProvider, WalletProvider } from '@solana/wallet-adapter-react';
 import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
 import {
@@ -19,6 +19,7 @@ import {
 } from '@solana/wallet-adapter-react-ui';
 import { clusterApiUrl } from '@solana/web3.js';
 import { Box } from '@mui/material';
+import { UploadMetadata } from '../metadata/UploadMetadata';
 import { MintNft } from '../nft/MintNft';
 
 // Default styles that can be overridden by your app
@@ -32,6 +33,12 @@ export const getStepContent = (step: number) => {
           <WalletMultiButton />
           <WalletDisconnectButton />
         </Box>
+      );
+    case 2: // Step 3
+      return(
+        <Fragment>
+          <UploadMetadata />
+        </Fragment>
       );
     case 3: // Step 4
       return(

@@ -1,13 +1,15 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import Arweave from 'arweave';
 import {
   Box,
+  Tooltip,
   Button,
   Divider,
   TextField,
   Typography,
   Grid,
 } from '@mui/material';
+import { useWallet } from '@solana/wallet-adapter-react';
 import { arTransactionIdContext } from '../../providers/ArTransactionId';
 import { ArweaveTools } from './ArweaveTools';
 import { UploadFile } from './UploadFile';
@@ -19,8 +21,29 @@ interface Window {
 }
 declare var window: Window
 
-
 export const UploadMetadata = () => {
+  // reference: https://github.com/solana-labs/wallet-adapter#usage
+  const { publicKey, sendTransaction } = useWallet();
+
+  useEffect(() => {
+    const initCreatorsAddressLabel = async() => {
+      // ArConnect need to waiting time for load wallet.
+      const _sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+      await _sleep(200); // 100 == 0.1 sec
+
+      await setWalletAddressToCreatorsAddress();
+    };
+    initCreatorsAddressLabel();
+  }, []);
+
+  async function setWalletAddressToCreatorsAddress() {
+    if(publicKey){
+      setPropertiesCreatorsAddress(publicKey.toString());
+    } else {
+      setPropertiesCreatorsAddress('');
+    }
+  }
+
   const arweave = Arweave.init({
     // --- Localnet ---
     // host: '127.0.0.1',
@@ -34,7 +57,6 @@ export const UploadMetadata = () => {
   });
 
   const { valueArTransactionId, setNewArTransactionId } = useContext(arTransactionIdContext);
-  const [blockId, setBlockId] = useState('not yet mined');
 
   // --- Metadata Summary ---
   const [valueName, setName] = useState('');
@@ -56,17 +78,7 @@ export const UploadMetadata = () => {
   const [valuePropertiesCreatorsAddress, setPropertiesCreatorsAddress] = useState('');
   const [valuePropertiesCreatorsShare, setPropertiesCreatorsShare] = useState('100');
 
-  async function setPhantomAddress() {
-    try {
-        const resp = await window.solana.connect();
-        console.log('My Phantom Address =>', resp.publicKey.toString());
-        setPropertiesCreatorsAddress(resp.publicKey.toString());
-    } catch (err) {
-        // { code: 4001, message: 'User rejected the request.' }
-    }
-  }
-
-  async function sendTransaction() {
+  async function sendMetadataTransaction() {
     // Token Metadata Standard: https://docs.metaplex.com/token-metadata/Versions/v1.0.0/nft-standard
     // Phantom: https://docs.phantom.app/best-practices/tokens/non-fungible-tokens
     const inputMetadata = {
@@ -149,7 +161,7 @@ export const UploadMetadata = () => {
         />
         <TextField
           value={valueSellerFeeBasisPoints}
-          onChange={event => setDescription(event.target.value)}
+          onChange={event => setSellerFeeBasisPoints(event.target.value)}
           label="Seller Fee(100 = 1%)"
         />
         <TextField
@@ -191,27 +203,29 @@ export const UploadMetadata = () => {
 
         <Divider textAlign="left" sx={{mt: 2, mb: 2}}>Creators</Divider>
 
-        <TextField
-          value={valuePropertiesCreatorsAddress}
-          onChange={event => setPropertiesCreatorsAddress(event.target.value)}
-          label="Creators Address"
-          color="secondary"
-          focused
-        />
-        <Button onClick={setPhantomAddress}>Set My Address</Button>
+        <Tooltip title={valuePropertiesCreatorsAddress} arrow>
+          <TextField
+            value={valuePropertiesCreatorsAddress}
+            onChange={event => setPropertiesCreatorsAddress(event.target.value)}
+            label="Creators Address"
+            color="secondary"
+            focused
+          />
+        </Tooltip>
+
         <TextField
           value={valuePropertiesCreatorsShare}
           onChange={event => setPropertiesCreatorsShare(event.target.value)}
           label="Creators Share(%)"
         />
 
-        <Typography>Note: Creators Address must be your address(Phantom).</Typography>
+        <Typography>Note: Creators Address must be your wallet address for Solana.</Typography>
       </Box>
 
       <Box sx={{ mb: 4 }}>
         <Grid container>
           <Grid item xs={4}>
-            <Button variant="contained" color="secondary" onClick={sendTransaction}>Send Transaction(wait a sec)</Button>
+            <Button variant="contained" color="secondary" onClick={sendMetadataTransaction}>Send Transaction(wait a sec)</Button>
           </Grid>
         </Grid>
       </Box>

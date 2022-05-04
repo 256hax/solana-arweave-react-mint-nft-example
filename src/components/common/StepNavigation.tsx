@@ -10,9 +10,7 @@ import Typography from '@mui/material/Typography';
 
 // Contents Components
 import { Arconnect } from '../wallet/Arconnect';
-import { UploadMetadata } from '../metadata/UploadMetadata';
 import { Phantom } from '../wallet/Phantom';
-import { MintNft } from '../nft/MintNft';
 
 const steps = [
   'Connect ArConnect',  // Step 1
@@ -33,9 +31,7 @@ export const getStepContent = (step: number) => {
       );
     case 2: // Step 3
       return(
-        <React.Fragment>
-          <UploadMetadata />
-        </React.Fragment>
+        <Phantom step={step} />
       );
     case 3: // Step 4
       return(
