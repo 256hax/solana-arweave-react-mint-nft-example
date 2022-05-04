@@ -9,7 +9,7 @@ interface Window {
 declare var window: Window
 
 export const Arconnect = () => {
-  const[valueConnectLabel, setConnectLabel] = useState('Connect');
+  const[valueConnectLabel, setConnectLabel] = useState('...');
 
   useEffect(() => {
     const initConnectLabel = async() => {
@@ -17,17 +17,17 @@ export const Arconnect = () => {
       const _sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
       await _sleep(200); // 100 == 0.1 sec
 
-      setConnectLabel(await getConnectLabel());
+      await updateConnectLabel();
     };
     initConnectLabel();
   }, []);
 
-  async function getConnectLabel() {
+  async function updateConnectLabel() {
     try {
       const address = await window.arweaveWallet.getActiveAddress();
-      return address;
+      setConnectLabel(address);
     } catch(e) {
-      return 'Connect ArConnect';
+      setConnectLabel('Connect ArConnect');
     }
   }
 
@@ -52,7 +52,7 @@ export const Arconnect = () => {
       ]);
       const address = await window.arweaveWallet.getActiveAddress();
 
-      setConnectLabel(await getConnectLabel());
+      await updateConnectLabel();
       console.log('ArConnect Connected! Public Key:', address);
     } else {
       console.log("Couldn't find ArConnect on your browser.");
@@ -62,7 +62,7 @@ export const Arconnect = () => {
   async function disconnetWallet() {
     await window.arweaveWallet.disconnect();
 
-    setConnectLabel(await getConnectLabel());
+    await updateConnectLabel();
     console.log('Disconnected!');
   }
 
