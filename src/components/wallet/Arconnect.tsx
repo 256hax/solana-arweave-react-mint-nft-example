@@ -53,7 +53,7 @@ export const Arconnect = () => {
       const address = await window.arweaveWallet.getActiveAddress();
 
       await updateConnectLabel();
-      console.log('ArConnect Connected! Public Key:', address);
+      console.log('Connected to ArConnect =>', address);
     } else {
       console.log("Couldn't find ArConnect on your browser.");
     }
