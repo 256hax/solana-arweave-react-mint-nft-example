@@ -1,6 +1,5 @@
 // Source: https://github.com/solana-labs/wallet-adapter
-import React, { FC, useMemo } from 'react';
-import Box from '@mui/material/Box';
+import { FC, useMemo } from 'react';
 import { ConnectionProvider, WalletProvider } from '@solana/wallet-adapter-react';
 import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
 import {
@@ -19,6 +18,7 @@ import {
     WalletMultiButton
 } from '@solana/wallet-adapter-react-ui';
 import { clusterApiUrl } from '@solana/web3.js';
+import { Box } from '@mui/material';
 import { MintNft } from '../nft/MintNft';
 
 // Default styles that can be overridden by your app

@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
-import Box from '@mui/material/Box';
-import { Grid, Button, Divider } from '@mui/material';
 import Arweave from 'arweave';
+import { Box, Grid, Button, Divider } from '@mui/material';
 
 // For "Property 'arweaveWallet' does not exist on type 'Window'." error.
 interface Window {

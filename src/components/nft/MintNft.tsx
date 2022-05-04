@@ -1,14 +1,14 @@
 import { useContext } from 'react';
-import { actions } from '@metaplex/js';
 import { clusterApiUrl, Connection, } from '@solana/web3.js';
 import { AnchorProvider } from "@project-serum/anchor";
-import { arTransactionIdContext } from '../../providers/ArTransactionId';
+import { actions } from '@metaplex/js';
 import {
   Box,
   Grid,
   Button,
   Typography,
 } from '@mui/material';
+import { arTransactionIdContext } from '../../providers/ArTransactionId';
 
 // For "Property 'solana' does not exist on type 'Window & typeof globalThis'" error.
 interface Window {

@@ -1,5 +1,5 @@
-import ArTransactionIdProvider from '../../providers/ArTransactionId';
 import { createTheme, ThemeProvider, Box, Container } from '@mui/material';
+import ArTransactionIdProvider from '../../providers/ArTransactionId';
 import { Header } from './Header';
 import { HorizontalLinearStepper } from './StepNavigation';
 

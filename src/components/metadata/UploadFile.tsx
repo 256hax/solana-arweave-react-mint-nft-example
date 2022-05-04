@@ -1,6 +1,5 @@
-import Arweave from 'arweave';
 import { useState } from 'react';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Arweave from 'arweave';
 import {
   Box,
   Accordion,
@@ -10,6 +9,7 @@ import {
   Grid,
   Button,
 } from '@mui/material';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 export const UploadFile = () => {
   const arweave = Arweave.init({

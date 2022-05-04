@@ -1,18 +1,13 @@
-import { Button } from '@mui/material';
 import { useState, useContext } from 'react';
+import Arweave from 'arweave';
 import {
   Box,
-  Input,
-  FormControl,
-  InputLabel,
-  FormHelperText,
-  OutlinedInput,
+  Button,
   Divider,
   TextField,
   Typography,
   Grid,
 } from '@mui/material';
-import Arweave from 'arweave';
 import { arTransactionIdContext } from '../../providers/ArTransactionId';
 import { ArweaveTools } from './ArweaveTools';
 import { UploadFile } from './UploadFile';
