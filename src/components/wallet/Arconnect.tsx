@@ -83,27 +83,24 @@ export const Arconnect = () => {
     console.log(response);
   }
 
+  // Ellipsis for MUI Button
+  const connectButtonSX = {
+    width: "100%",
+    maxWidth: 180, // Fix this too if change outer Grid/Button width.
+    textOverflow: "ellipsis",
+    whiteSpace: "nowrap",
+    overflow: "hidden",
+    textAlign: "left",
+    display: "block",
+  };
+
   return(
     <Box>
-      <Divider textAlign="left" sx={{mt: 2, mb: 2}}>
-        Connect Wallet(ArConnect)
-      </Divider>
+      <Divider textAlign="left" sx={{mt: 2, mb: 2}}>Connect Wallet(ArConnect)</Divider>
 
       <Grid container>
         <Grid item xs={3}>
-          <Button variant="contained" color="secondary" onClick={connectWallet}
-            sx={{
-              // Style for ellipsis
-              width: "100%",
-              maxWidth: 180, // Fix this too if change Grid/Button width.
-              textOverflow: "ellipsis",
-              whiteSpace: "nowrap",
-              overflow: "hidden",
-              textAlign: "left",
-              display: "block",
-              // End Style for ellipsis
-            }}
-          >
+          <Button variant="contained" color="secondary" onClick={connectWallet} sx={connectButtonSX}>
             {valueConnectLabel}
           </Button>
         </Grid>
@@ -114,9 +111,7 @@ export const Arconnect = () => {
         </Grid>
       </Grid>
 
-      <Divider textAlign="left" sx={{mt: 2, mb: 2}}>
-        Optional
-      </Divider>
+      <Divider textAlign="left" sx={{mt: 2, mb: 2}}>Optional</Divider>
 
       <Grid container>
         <Grid item xs={3}>
