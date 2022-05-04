@@ -20,7 +20,7 @@ const theme = createTheme({
     ].join(','),
     fontSize: 16,
     button: {
-      textTransform: 'none' // Disable correction uppercase
+      textTransform: 'none', // Disable correction uppercase
     },
   },
 });
