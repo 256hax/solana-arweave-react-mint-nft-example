@@ -1,6 +1,9 @@
-import React, { FC, createContext, useState } from "react";
+import { FC, createContext, useState } from "react";
 
-const initialValue = { valueArTransactionId: '', setNewArTransactionId: (id: string) => {} };
+const initialValue = {
+  valueArTransactionId: '',
+  setNewArTransactionId: (id: string) => {},
+};
 export const arTransactionIdContext = createContext(initialValue);
 
 const ArTransactionIdProvider: FC = ({ children }) => {

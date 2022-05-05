@@ -233,6 +233,11 @@ export const UploadMetadata = () => {
             <Button variant="contained" color="secondary" onClick={sendMetadataTransaction}>Send Transaction(wait a sec)</Button>
           </Grid>
         </Grid>
+        <Grid container>
+          <Grid item xs={10} sx={{ mt: 2 }}>
+            <Typography>Arweave Transaction ID: {valueArTransactionId}</Typography>
+          </Grid>
+        </Grid>
       </Box>
 
       <UploadFile />

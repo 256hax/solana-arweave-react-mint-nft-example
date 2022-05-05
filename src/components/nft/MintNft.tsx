@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { clusterApiUrl, Connection, } from '@solana/web3.js';
 import { AnchorProvider } from "@project-serum/anchor";
 import { actions } from '@metaplex/js';
@@ -6,6 +6,7 @@ import {
   Box,
   Grid,
   Button,
+  TextField,
   Typography,
 } from '@mui/material';
 import { arTransactionIdContext } from '../../providers/ArTransactionId';
@@ -18,6 +19,7 @@ declare var window: Window
 
 export const MintNft = () => {
   const { valueArTransactionId, setNewArTransactionId } = useContext(arTransactionIdContext);
+  const [valueSolTransactionId, setSolTransactionId] = useState('');
 
   // Localnet
   // const connection = new Connection('http://127.0.0.1:8899', 'confirmed');
@@ -63,6 +65,8 @@ export const MintNft = () => {
       maxSupply: 1
     });
 
+    setSolTransactionId(mintNftResponse.mint.toString());
+    
     console.log('mintNftResponse =>', mintNftResponse);
     console.log('mint =>', mintNftResponse.mint.toString());
     console.log('metadata =>', mintNftResponse.metadata.toString());
@@ -71,20 +75,39 @@ export const MintNft = () => {
 
   return(
     <Box>
-      <Box sx={{ mb:3 }}>
+      <Box sx={{ mb:2 }}>
         <Typography>
           Mint NFT on Solana Chain.
         </Typography>
       </Box>
+
+      <Box
+        component="form"
+        sx={{
+          '& > :not(style)': { m: 1 },
+        }}
+        noValidate
+        autoComplete="off"
+      >
+        <TextField
+          value={valueArTransactionId}
+          label="Arweave Transaction ID"
+          fullWidth
+        />
+        <Typography>Note: Minting allows when Creators Address equal to Your Address(ex: Phantom) in Metadata.</Typography>
+      </Box>
+
       <Box sx={{ mb: 4 }}>
         <Grid container>
           <Grid item xs={4}>
             <Button variant="contained" color="secondary" onClick={sendTransaction}>Mint NFT</Button>
           </Grid>
         </Grid>
-      </Box>
-      <Box>
-        <Typography>Note: Mint only allows if Creators Address equal to Your Address(Phantom) in Metadata.</Typography>
+        <Grid container>
+          <Grid item xs={10} sx={{ mt: 2 }}>
+            <Typography>Solana Transaction ID: {valueSolTransactionId}</Typography>
+          </Grid>
+        </Grid>
       </Box>
     </Box>
   );
