@@ -13,7 +13,7 @@ export const Arconnect = () => {
 
   useEffect(() => {
     const initConnectLabel = async() => {
-      // ArConnect need to waiting time for load wallet.
+      // You need to wait a sec for loading wallet.
       const _sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
       await _sleep(200); // 100 == 0.1 sec
 
