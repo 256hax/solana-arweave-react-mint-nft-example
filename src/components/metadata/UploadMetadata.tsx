@@ -27,7 +27,7 @@ export const UploadMetadata = () => {
 
   useEffect(() => {
     const initCreatorsAddressLabel = async() => {
-      // ArConnect need to waiting time for load wallet.
+      // You need to wait a sec for loading wallet.
       const _sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
       await _sleep(200); // 100 == 0.1 sec
 
@@ -127,6 +127,8 @@ export const UploadMetadata = () => {
       <Box>
         <Typography>
           Upload Metadata to Arweave. Input Example:&nbsp;
+          <a href="https://docs.metaplex.com/token-metadata/Versions/v1.0.0/nft-standard" target="_blank">Metaplex</a>
+          &nbsp;|&nbsp;
           <a href="https://arweave.net/3wXyF1wvK6ARJ_9ue-O58CMuXrz5nyHEiPFQ6z5q02E" target="_blank">Arweave</a>
           &nbsp;|&nbsp;
           <a href="https://explorer.solana.com/address/9ARngHhVaCtH5JFieRdSS5Y8cdZk2TMF4tfGSWFB9iSK/metadata" target="_blank">Solana Explorer</a>
@@ -158,6 +160,9 @@ export const UploadMetadata = () => {
           value={valueDescription}
           onChange={event => setDescription(event.target.value)}
           label="Description"
+          fullWidth
+          multiline
+          maxRows={4}
         />
         <TextField
           value={valueSellerFeeBasisPoints}
