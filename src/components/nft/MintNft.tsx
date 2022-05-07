@@ -9,7 +9,7 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import { arTransactionIdContext } from '../../providers/ArweaveTransactionId';
+import { ArTransactionIdContext } from '../../providers/ArweaveTransactionId';
 
 // For "Property 'solana' does not exist on type 'Window & typeof globalThis'" error.
 interface Window {
@@ -18,7 +18,7 @@ interface Window {
 declare var window: Window
 
 export const MintNft = () => {
-  const { valueArTransactionId, setNewArTransactionId } = useContext(arTransactionIdContext);
+  const { valueArTransactionId, setNewArTransactionId } = useContext(ArTransactionIdContext);
   const [valueSolTransactionId, setSolTransactionId] = useState('');
 
   // Localnet

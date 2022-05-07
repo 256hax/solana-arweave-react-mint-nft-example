@@ -11,7 +11,8 @@ import {
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { ArweaveClusterContext } from '../../providers/ArweaveCluster';
-import { arTransactionIdContext } from '../../providers/ArweaveTransactionId';
+import { ArTransactionIdContext } from '../../providers/ArweaveTransactionId';
+import { getTransactionUrl } from '../../helpers/arweave';
 
 export const ArweaveTools = () => {
   const { valueCluster, changeCluster } = useContext(ArweaveClusterContext);
@@ -21,10 +22,9 @@ export const ArweaveTools = () => {
     protocol: valueCluster.protocol,
   });
 
-  const { valueArTransactionId, setNewArTransactionId } = useContext(arTransactionIdContext);
+  const { valueArTransactionId, setNewArTransactionId } = useContext(ArTransactionIdContext);
 
   async function mineTransaction() {
-    console.log(arweave);
     const response = await arweave.api.get('mine/');
     console.log(response);
 
@@ -35,16 +35,18 @@ export const ArweaveTools = () => {
   async function getTransaction() {
     const transaction = await arweave.transactions.get(valueArTransactionId);
     console.log(transaction);
+
+    const url = getTransactionUrl(valueCluster, valueArTransactionId);
+    console.log('Transaction URL =>', url);
   }
 
-  async function getTransactionData() {
+  async function getUploadedData() {
     const tx_api_get_base64 = await arweave.api.get('/tx/' + valueArTransactionId + '/data');
     console.log('Base64 Data =>', tx_api_get_base64.data);
 
     const tx_api_get_decoded = await arweave.api.get('/' + valueArTransactionId);
     console.log('Decoded Data =>', tx_api_get_decoded.data);
   }
-
 
   return (
     <Box sx={{ mt: 1}}>
@@ -54,18 +56,18 @@ export const ArweaveTools = () => {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography>(Optional) ArWeave Tools for Local(ArLocal)</Typography>
+          <Typography>(Optional) ArWeave Tools</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Grid container>
-            <Grid item xs={3}>
-              <Button variant="contained" color="secondary" onClick={mineTransaction}>Mine Transaction</Button>
+            <Grid item xs={4}>
+              <Button variant="contained" color="secondary" onClick={mineTransaction}>Mine Transaction(for Localnet)</Button>
             </Grid>
             <Grid item xs={3}>
               <Button variant="contained" color="secondary" onClick={getTransaction}>Get Transaction</Button>
             </Grid>
             <Grid item xs={3}>
-              <Button variant="contained" color="secondary" onClick={getTransactionData}>Get Uploaded Data</Button>
+              <Button variant="contained" color="secondary" onClick={getUploadedData}>Get Uploaded Data</Button>
             </Grid>
           </Grid>
         </AccordionDetails>

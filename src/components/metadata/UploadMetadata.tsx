@@ -11,9 +11,10 @@ import {
 } from '@mui/material';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { ArweaveClusterContext } from '../../providers/ArweaveCluster';
-import { arTransactionIdContext } from '../../providers/ArweaveTransactionId';
+import { ArTransactionIdContext } from '../../providers/ArweaveTransactionId';
 import { ArweaveTools } from './ArweaveTools';
 import { UploadFile } from './UploadFile';
+import { getTransactionUrl } from '../../helpers/arweave';
 
 // For "Property 'arweaveWallet' does not exist on type 'Window'." error.
 interface Window {
@@ -52,7 +53,7 @@ export const UploadMetadata = () => {
     }
   }
 
-  const { valueArTransactionId, setNewArTransactionId } = useContext(arTransactionIdContext);
+  const { valueArTransactionId, setNewArTransactionId } = useContext(ArTransactionIdContext);
 
   // --- Metadata Summary ---
   const [valueName, setName] = useState('');
@@ -231,7 +232,12 @@ export const UploadMetadata = () => {
         </Grid>
         <Grid container>
           <Grid item xs={10} sx={{ mt: 2 }}>
-            <Typography>Arweave Transaction ID: {valueArTransactionId}</Typography>
+            <Typography>
+              Arweave Transaction ID: &nbsp;
+              <a href={getTransactionUrl(valueCluster, valueArTransactionId)} target="_blank">
+                {valueArTransactionId}
+              </a>
+            </Typography>
           </Grid>
         </Grid>
       </Box>

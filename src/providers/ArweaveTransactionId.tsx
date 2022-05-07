@@ -4,7 +4,7 @@ const defaultValue = {
   valueArTransactionId: '',
   setNewArTransactionId: (id: string) => {},
 };
-export const arTransactionIdContext = createContext(defaultValue);
+export const ArTransactionIdContext = createContext(defaultValue);
 
 type Props = {
   children?: React.ReactNode
@@ -19,8 +19,8 @@ export const ArTransactionIdContextProvider: FC<Props> = ({ children }) => {
 
   // return a context provider wrapping children
   return (
-    <arTransactionIdContext.Provider value={{ valueArTransactionId, setNewArTransactionId }}>
+    <ArTransactionIdContext.Provider value={{ valueArTransactionId, setNewArTransactionId }}>
       {children}
-    </arTransactionIdContext.Provider>
+    </ArTransactionIdContext.Provider>
   );
 };

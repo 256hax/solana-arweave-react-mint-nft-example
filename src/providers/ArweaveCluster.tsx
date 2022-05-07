@@ -1,4 +1,5 @@
 import { FC, createContext, useContext, useState } from 'react';
+import { ValueClusterType } from '../types/arweave';
 
 // Fix "cluster" if change MUI MenuItem "value"
 export const Cluster = {
@@ -40,7 +41,7 @@ type Props = {
 
 export const ArweaveClusterContextProvider: FC<Props> = ({children}) => {
   const context = useContext(ArweaveClusterContext);
-  const [valueCluster, setCluster] = useState(context.valueCluster);
+  const [valueCluster, setCluster] = useState<ValueClusterType>(context.valueCluster);
 
   const changeCluster = (cluster: string) => {
     switch (cluster) {
