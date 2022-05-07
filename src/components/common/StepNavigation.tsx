@@ -10,7 +10,7 @@ import Typography from '@mui/material/Typography';
 
 // Contents Components
 import { Arconnect } from '../arweaveWallet/Arconnect';
-import { Phantom } from '../wallet/Phantom';
+import { Phantom } from '../solanaWallet/Phantom';
 
 const steps = [
   'Connect ArConnect',  // Step 1
