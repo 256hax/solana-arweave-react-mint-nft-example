@@ -10,8 +10,8 @@ import {
   Button,
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { ArweaveClusterContext } from '../../providers/ArweaveClusterContextProvider';
-import { arTransactionIdContext } from '../../providers/ArTransactionId';
+import { ArweaveClusterContext } from '../../providers/ArweaveCluster';
+import { arTransactionIdContext } from '../../providers/ArweaveTransactionId';
 
 export const ArweaveTools = () => {
   const { valueCluster, changeCluster } = useContext(ArweaveClusterContext);

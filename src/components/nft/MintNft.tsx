@@ -9,7 +9,7 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import { arTransactionIdContext } from '../../providers/ArTransactionId';
+import { arTransactionIdContext } from '../../providers/ArweaveTransactionId';
 
 // For "Property 'solana' does not exist on type 'Window & typeof globalThis'" error.
 interface Window {
@@ -66,7 +66,7 @@ export const MintNft = () => {
     });
 
     setSolTransactionId(mintNftResponse.mint.toString());
-    
+
     console.log('mintNftResponse =>', mintNftResponse);
     console.log('mint =>', mintNftResponse.mint.toString());
     console.log('metadata =>', mintNftResponse.metadata.toString());

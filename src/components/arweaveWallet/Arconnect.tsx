@@ -1,7 +1,7 @@
 import { useContext, useState, useEffect } from 'react';
 import Arweave from 'arweave';
 import { Box, Grid, Button, Divider } from '@mui/material';
-import { ArweaveClusterContext } from '../../providers/ArweaveClusterContextProvider';
+import { ArweaveClusterContext } from '../../providers/ArweaveCluster';
 import { ArweaveClusterSelect } from './ArweaveClusterSelect';
 
 // For "Property 'arweaveWallet' does not exist on type 'Window'." error.

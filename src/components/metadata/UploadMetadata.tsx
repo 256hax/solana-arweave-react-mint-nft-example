@@ -10,8 +10,8 @@ import {
   Grid,
 } from '@mui/material';
 import { useWallet } from '@solana/wallet-adapter-react';
-import { ArweaveClusterContext } from '../../providers/ArweaveClusterContextProvider';
-import { arTransactionIdContext } from '../../providers/ArTransactionId';
+import { ArweaveClusterContext } from '../../providers/ArweaveCluster';
+import { arTransactionIdContext } from '../../providers/ArweaveTransactionId';
 import { ArweaveTools } from './ArweaveTools';
 import { UploadFile } from './UploadFile';
 

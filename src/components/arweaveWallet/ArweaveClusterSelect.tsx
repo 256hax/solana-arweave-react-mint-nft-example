@@ -7,7 +7,7 @@ import {
   Select,
   SelectChangeEvent
 } from '@mui/material';
-import { ArweaveClusterContext } from '../../providers/ArweaveClusterContextProvider';
+import { ArweaveClusterContext } from '../../providers/ArweaveCluster';
 
 export const ArweaveClusterSelect = () => {
   const { valueCluster, changeCluster } = useContext(ArweaveClusterContext);

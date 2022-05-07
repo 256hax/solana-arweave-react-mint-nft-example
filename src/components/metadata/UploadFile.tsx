@@ -10,7 +10,7 @@ import {
   Button,
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { ArweaveClusterContext } from '../../providers/ArweaveClusterContextProvider';
+import { ArweaveClusterContext } from '../../providers/ArweaveCluster';
 
 export const UploadFile = () => {
   const { valueCluster, changeCluster } = useContext(ArweaveClusterContext);

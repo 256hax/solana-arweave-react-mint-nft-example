@@ -6,7 +6,7 @@ const initialValue = {
 };
 export const arTransactionIdContext = createContext(initialValue);
 
-const ArTransactionIdProvider: FC = ({ children }) => {
+export const ArTransactionIdContextProvider: FC = ({ children }) => {
   const [valueArTransactionId, setArTransactionId] = useState('');
 
   const setNewArTransactionId = (id: string) => {
@@ -20,5 +20,3 @@ const ArTransactionIdProvider: FC = ({ children }) => {
     </arTransactionIdContext.Provider>
   );
 };
-
-export default ArTransactionIdProvider;
