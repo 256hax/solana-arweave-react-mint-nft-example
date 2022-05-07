@@ -9,7 +9,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
 // Contents Components
-import { Arconnect } from '../wallet/Arconnect';
+import { Arconnect } from '../arweaveWallet/Arconnect';
 import { Phantom } from '../wallet/Phantom';
 
 const steps = [

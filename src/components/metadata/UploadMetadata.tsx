@@ -10,6 +10,7 @@ import {
   Grid,
 } from '@mui/material';
 import { useWallet } from '@solana/wallet-adapter-react';
+import { ArweaveClusterContext } from '../../providers/ArweaveClusterContextProvider';
 import { arTransactionIdContext } from '../../providers/ArTransactionId';
 import { ArweaveTools } from './ArweaveTools';
 import { UploadFile } from './UploadFile';
@@ -22,6 +23,13 @@ interface Window {
 declare var window: Window
 
 export const UploadMetadata = () => {
+  const { valueCluster, changeCluster } = useContext(ArweaveClusterContext);
+  const arweave = Arweave.init({
+    host: valueCluster.host,
+    port: valueCluster.port,
+    protocol: valueCluster.protocol,
+  });
+
   // reference: https://github.com/solana-labs/wallet-adapter#usage
   const { publicKey, sendTransaction } = useWallet();
 
@@ -43,18 +51,6 @@ export const UploadMetadata = () => {
       setPropertiesCreatorsAddress('');
     }
   }
-
-  const arweave = Arweave.init({
-    // --- Localnet ---
-    // host: '127.0.0.1',
-    // port: 1984,
-    // protocol: 'http'
-
-    // --- Testnet ---
-    host: 'testnet.redstone.tools',
-    port: 443,
-    protocol: 'https'
-  });
 
   const { valueArTransactionId, setNewArTransactionId } = useContext(arTransactionIdContext);
 

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import Arweave from 'arweave';
 import {
   Box,
@@ -10,18 +10,14 @@ import {
   Button,
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { ArweaveClusterContext } from '../../providers/ArweaveClusterContextProvider';
 
 export const UploadFile = () => {
+  const { valueCluster, changeCluster } = useContext(ArweaveClusterContext);
   const arweave = Arweave.init({
-    // --- Localnet ---
-    // host: '127.0.0.1',
-    // port: 1984,
-    // protocol: 'http'
-
-    // --- Testnet powered by https://redstone.finance ---
-    host: 'testnet.redstone.tools',
-    port: 443,
-    protocol: 'https'
+    host: valueCluster.host,
+    port: valueCluster.port,
+    protocol: valueCluster.protocol,
   });
 
   const [valueFile, setFile] = useState<File>();

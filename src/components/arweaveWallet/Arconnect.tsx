@@ -1,6 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import Arweave from 'arweave';
 import { Box, Grid, Button, Divider } from '@mui/material';
+import { ArweaveClusterContext } from '../../providers/ArweaveClusterContextProvider';
+import { ArweaveClusterSelect } from './ArweaveClusterSelect';
 
 // For "Property 'arweaveWallet' does not exist on type 'Window'." error.
 interface Window {
@@ -9,6 +11,13 @@ interface Window {
 declare var window: Window
 
 export const Arconnect = () => {
+  const { valueCluster, changeCluster } = useContext(ArweaveClusterContext);
+  const arweave = Arweave.init({
+    host: valueCluster.host,
+    port: valueCluster.port,
+    protocol: valueCluster.protocol,
+  });
+
   const[valueConnectLabel, setConnectLabel] = useState('...');
 
   useEffect(() => {
@@ -30,18 +39,6 @@ export const Arconnect = () => {
       setConnectLabel('Connect ArConnect');
     }
   }
-
-  const arweave = Arweave.init({
-    // --- Localnet ---
-    // host: '127.0.0.1',
-    // port: 1984,
-    // protocol: 'http'
-
-    // --- Testnet powered by https://redstone.finance ---
-    host: 'testnet.redstone.tools',
-    port: 443,
-    protocol: 'https'
-  });
 
   async function connectWallet() {
     if (window.arweaveWallet) {
@@ -95,6 +92,15 @@ export const Arconnect = () => {
 
   return(
     <Box>
+
+      <Divider textAlign="left" sx={{mt: 2, mb: 2}}>Select Cluster</Divider>
+
+      <Grid container>
+        <Grid item xs={6}>
+          <ArweaveClusterSelect />
+        </Grid>
+      </Grid>
+
       <Divider textAlign="left" sx={{mt: 2, mb: 2}}>Connect Wallet(ArConnect)</Divider>
 
       <Grid container>
