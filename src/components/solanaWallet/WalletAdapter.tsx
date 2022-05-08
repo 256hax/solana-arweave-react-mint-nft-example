@@ -50,7 +50,7 @@ export const getStepContent = (step: number) => {
   }
 };
 
-export const Phantom: FC<{ step: number }> = (props) => {
+export const WalletAdapter: FC<{ step: number }> = (props) => {
     // The network can be set to 'devnet', 'testnet', or 'mainnet-beta'.
     const network = WalletAdapterNetwork.Devnet;
 

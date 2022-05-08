@@ -10,7 +10,7 @@ import Typography from '@mui/material/Typography';
 
 // Contents Components
 import { Arconnect } from '../arweaveWallet/Arconnect';
-import { Phantom } from '../solanaWallet/Phantom';
+import { WalletAdapter } from '../solanaWallet/WalletAdapter';
 
 const steps = [
   'Connect ArConnect',  // Step 1
@@ -27,15 +27,15 @@ export const getStepContent = (step: number) => {
       );
     case 1: // Step 2
       return(
-        <Phantom step={step} />
+        <WalletAdapter step={step} />
       );
     case 2: // Step 3
       return(
-        <Phantom step={step} />
+        <WalletAdapter step={step} />
       );
     case 3: // Step 4
       return(
-        <Phantom step={step} />
+        <WalletAdapter step={step} />
       );
     default:
       return "unknown step";
