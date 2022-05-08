@@ -9,7 +9,9 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
+import { ArweaveClusterContext } from '../../providers/ArweaveCluster';
 import { ArTransactionIdContext } from '../../providers/ArweaveTransactionId';
+import { getTransactionUrl } from '../../helpers/arweave';
 
 // For "Property 'solana' does not exist on type 'Window & typeof globalThis'" error.
 interface Window {
@@ -18,6 +20,7 @@ interface Window {
 declare var window: Window
 
 export const MintNft = () => {
+  const { arweave, changeCluster } = useContext(ArweaveClusterContext);
   const { valueArTransactionId, setNewArTransactionId } = useContext(ArTransactionIdContext);
   const [valueSolTransactionId, setSolTransactionId] = useState('');
 
@@ -44,14 +47,14 @@ export const MintNft = () => {
     //  Details: https://docs.metaplex.com/token-metadata/specification
     //  Example: https://arweave.net/3wXyF1wvK6ARJ_9ue-O58CMuXrz5nyHEiPFQ6z5q02E
 
-    const txId = valueArTransactionId;
+    // const txId = valueArTransactionId;
 
     // --- Localnet ---
     // const uri = 'http://127.0.0.1:1984/'; // Localnet
 
     // --- Testnet ---
     // Note: Tesnet powered by https://redstone.finance/
-    const uri = 'https://testnet.redstone.tools/';
+    // const uri = 'https://testnet.redstone.tools/';
     // const txId = 'vUOW3yPQiLBnVhU1XpyBeHeraxP9C4_OLkioHMCxhQY'; // Stub
 
     // --- Mainnet ---
@@ -61,7 +64,7 @@ export const MintNft = () => {
     const mintNftResponse = await actions.mintNFT({
       connection,
       wallet: provider.wallet, // It need to match your wallet and creators address of Metadata.
-      uri: uri + txId,
+      uri: getTransactionUrl(arweave.api.config, valueArTransactionId),
       maxSupply: 1
     });
 
