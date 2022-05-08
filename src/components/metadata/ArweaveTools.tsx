@@ -15,12 +15,7 @@ import { ArTransactionIdContext } from '../../providers/ArweaveTransactionId';
 import { getTransactionUrl } from '../../helpers/arweave';
 
 export const ArweaveTools = () => {
-  const { valueCluster, changeCluster } = useContext(ArweaveClusterContext);
-  const arweave = Arweave.init({
-    host: valueCluster.host,
-    port: valueCluster.port,
-    protocol: valueCluster.protocol,
-  });
+  const { arweave, changeCluster } = useContext(ArweaveClusterContext);
 
   const { valueArTransactionId, setNewArTransactionId } = useContext(ArTransactionIdContext);
 
@@ -36,7 +31,7 @@ export const ArweaveTools = () => {
     const transaction = await arweave.transactions.get(valueArTransactionId);
     console.log(transaction);
 
-    const url = getTransactionUrl(valueCluster, valueArTransactionId);
+    const url = getTransactionUrl(arweave.api.config, valueArTransactionId);
     console.log('Transaction URL =>', url);
   }
 

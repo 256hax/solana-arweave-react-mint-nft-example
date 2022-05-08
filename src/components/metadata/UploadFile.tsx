@@ -11,14 +11,10 @@ import {
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { ArweaveClusterContext } from '../../providers/ArweaveCluster';
+import { getTransactionUrl } from '../../helpers/arweave';
 
 export const UploadFile = () => {
-  const { valueCluster, changeCluster } = useContext(ArweaveClusterContext);
-  const arweave = Arweave.init({
-    host: valueCluster.host,
-    port: valueCluster.port,
-    protocol: valueCluster.protocol,
-  });
+  const { arweave, changeCluster } = useContext(ArweaveClusterContext);
 
   const [valueFile, setFile] = useState<File>();
 
@@ -34,6 +30,9 @@ export const UploadFile = () => {
       const transaction = await arweave.createTransaction({ data: data });
       await arweave.transactions.sign(transaction);
       console.log('Transaction =>', transaction);
+
+      const tx_url = getTransactionUrl(arweave.api.config, transaction.id);
+      console.log('Transaction URL =>', tx_url);
 
       const uploader = await arweave.transactions.getUploader(transaction);
       while (!uploader.isComplete) {

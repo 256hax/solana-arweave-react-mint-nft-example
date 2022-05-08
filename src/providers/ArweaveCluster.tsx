@@ -1,36 +1,43 @@
 import { FC, createContext, useContext, useState } from 'react';
+import Arweave from 'arweave';
 import { ValueClusterType } from '../types/arweave';
 
-// Fix "cluster" if change MUI MenuItem "value"
+// Fix "host" if change MUI MenuItem "value"
 export const Cluster = {
   localnet: {
-    cluster: 'localnet',
     host: '127.0.0.1',
     port: 1984,
     protocol: 'http',
   },
   testnet: {
-    cluster: 'testnet',
     host: 'www.arweave.run',
     port: 443,
     protocol: 'https',
   },
   testnet_redstone: {
-    cluster: 'testnet_redstone',
     host: 'testnet.redstone.tools',
     port: 443,
     protocol: 'https',
   },
   mainnet: {
-    cluster: 'mainnet',
     host: 'arweave.net',
     port: 443,
     protocol: 'https',
   },
 }
 
+const initArweave = (cluster: ValueClusterType) => {
+  const arweave = Arweave.init({
+    host: cluster.host,
+    port: cluster.port,
+    protocol: cluster.protocol,
+  });
+
+  return arweave;
+}
+
 const defaultValue = {
-  valueCluster: Cluster.testnet,
+  arweave: initArweave(Cluster.testnet),
   changeCluster: (cluster: string) => {},
 };
 export const ArweaveClusterContext = createContext(defaultValue);
@@ -41,27 +48,27 @@ type Props = {
 
 export const ArweaveClusterContextProvider: FC<Props> = ({children}) => {
   const context = useContext(ArweaveClusterContext);
-  const [valueCluster, setCluster] = useState<ValueClusterType>(context.valueCluster);
+  const [arweave, setCluster] = useState(context.arweave);
 
-  const changeCluster = (cluster: string) => {
-    switch (cluster) {
-      case 'localnet':
-        setCluster(Cluster.localnet);
+  const changeCluster = (host: string) => {
+    switch (host) {
+      case '127.0.0.1':
+        setCluster(initArweave(Cluster.localnet));
         break;
-      case 'testnet':
-        setCluster(Cluster.testnet);
+      case 'www.arweave.run':
+        setCluster(initArweave(Cluster.testnet));
         break;
-      case 'testnet_redstone':
-        setCluster(Cluster.testnet_redstone);
+      case 'testnet.redstone.tools':
+        setCluster(initArweave(Cluster.testnet_redstone));
         break;
-      case 'mainnet':
-        setCluster(Cluster.mainnet);
+      case 'arweave.net':
+        setCluster(initArweave(Cluster.mainnet));
         break;
     }
   };
 
   return (
-    <ArweaveClusterContext.Provider value={{ valueCluster, changeCluster }}>
+    <ArweaveClusterContext.Provider value={{ arweave, changeCluster }}>
       {children}
     </ArweaveClusterContext.Provider>
   );

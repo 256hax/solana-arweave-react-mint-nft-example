@@ -10,7 +10,7 @@ import {
 import { ArweaveClusterContext } from '../../providers/ArweaveCluster';
 
 export const ArweaveClusterSelect = () => {
-  const { valueCluster, changeCluster } = useContext(ArweaveClusterContext);
+  const { arweave, changeCluster } = useContext(ArweaveClusterContext);
 
   const onChangeCluster = (event: SelectChangeEvent) => {
     changeCluster(event.target.value);
@@ -21,14 +21,14 @@ export const ArweaveClusterSelect = () => {
       <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label">Arweave Cluster</InputLabel>
         <Select
-          value={valueCluster.cluster}
+          value={arweave.api.config.host}
           label="Arweave Cluster"
           onChange={onChangeCluster}
         >
-          <MenuItem value="localnet">Localnet (127.0.01)</MenuItem>
-          <MenuItem value="testnet">Testnet (www.arweave.run)</MenuItem>
-          <MenuItem value="testnet_redstone">Testnet (testnet.redstone.tools)</MenuItem>
-          <MenuItem value="mainnet">Mainnet (arweave.net)</MenuItem>
+          <MenuItem value="127.0.0.1">Localnet (127.0.01)</MenuItem>
+          <MenuItem value="www.arweave.run">Testnet (www.arweave.run)</MenuItem>
+          <MenuItem value="testnet.redstone.tools">Testnet (testnet.redstone.tools)</MenuItem>
+          <MenuItem value="arweave.net">Mainnet (arweave.net)</MenuItem>
         </Select>
       </FormControl>
     </Box>

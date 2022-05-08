@@ -11,12 +11,7 @@ interface Window {
 declare var window: Window
 
 export const Arconnect = () => {
-  const { valueCluster, changeCluster } = useContext(ArweaveClusterContext);
-  const arweave = Arweave.init({
-    host: valueCluster.host,
-    port: valueCluster.port,
-    protocol: valueCluster.protocol,
-  });
+  const { arweave, changeCluster } = useContext(ArweaveClusterContext);
 
   const[valueConnectLabel, setConnectLabel] = useState('...');
 

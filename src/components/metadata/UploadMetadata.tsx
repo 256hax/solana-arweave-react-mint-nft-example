@@ -24,12 +24,7 @@ interface Window {
 declare var window: Window
 
 export const UploadMetadata = () => {
-  const { valueCluster, changeCluster } = useContext(ArweaveClusterContext);
-  const arweave = Arweave.init({
-    host: valueCluster.host,
-    port: valueCluster.port,
-    protocol: valueCluster.protocol,
-  });
+  const { arweave, changeCluster } = useContext(ArweaveClusterContext);
 
   // reference: https://github.com/solana-labs/wallet-adapter#usage
   const { publicKey, sendTransaction } = useWallet();
@@ -234,7 +229,7 @@ export const UploadMetadata = () => {
           <Grid item xs={10} sx={{ mt: 2 }}>
             <Typography>
               Arweave Transaction ID: &nbsp;
-              <a href={getTransactionUrl(valueCluster, valueArTransactionId)} target="_blank">
+              <a href={getTransactionUrl(arweave.api.config, valueArTransactionId)} target="_blank">
                 {valueArTransactionId}
               </a>
             </Typography>
