@@ -1,5 +1,4 @@
 import { useContext, useState } from 'react';
-import Arweave from 'arweave';
 import {
   Box,
   Accordion,

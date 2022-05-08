@@ -1,5 +1,4 @@
 import { useContext, useState, useEffect } from 'react';
-import Arweave from 'arweave';
 import { Box, Grid, Button, Divider } from '@mui/material';
 import { ArweaveClusterContext } from '../../providers/ArweaveCluster';
 import { ArweaveClusterSelect } from './ArweaveClusterSelect';

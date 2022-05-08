@@ -2,7 +2,6 @@ import { FC, createContext, useContext, useState } from 'react';
 import Arweave from 'arweave';
 import { ValueClusterType } from '../types/arweave';
 
-// Fix "host" if change MUI MenuItem "value"
 export const Cluster = {
   localnet: {
     host: '127.0.0.1',

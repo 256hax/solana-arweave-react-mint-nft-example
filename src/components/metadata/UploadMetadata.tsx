@@ -1,5 +1,4 @@
 import { useState, useContext, useEffect } from 'react';
-import Arweave from 'arweave';
 import {
   Box,
   Tooltip,

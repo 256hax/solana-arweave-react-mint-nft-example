@@ -1,6 +1,9 @@
 /*
   Get Transaction URL via Arweave wallet
-  
+
+  args:
+    arweaveApiConfig: arweave.api.config
+    id: Arweave Transaction ID
   Note:
     console.log(arweave.api.config); =>
       host: "www.arweave.run"
