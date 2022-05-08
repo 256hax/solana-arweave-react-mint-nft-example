@@ -9,9 +9,11 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
+
 import { ArweaveClusterContext } from '../../providers/ArweaveCluster';
 import { ArTransactionIdContext } from '../../providers/ArweaveTransactionId';
-import { getTransactionUrl } from '../../helpers/arweave';
+import { getArweaveTransactionUrl } from '../../helpers/arweave';
+
 import { SolanaClusterContext } from '../../providers/SolanaCluster';
 import { getSolanaTransactionUrl } from '../../helpers/solana';
 
@@ -22,17 +24,11 @@ interface Window {
 declare var window: Window
 
 export const MintNft = () => {
-  const { arweave, changeCluster } = useContext(ArweaveClusterContext);
+  const { arweave, changeArweaveCluster } = useContext(ArweaveClusterContext);
   const { valueArTransactionId, setNewArTransactionId } = useContext(ArTransactionIdContext);
 
   const { connection, changeSolanaCluster } = useContext(SolanaClusterContext);
   const [valueSolTransactionId, setSolTransactionId] = useState('');
-
-  // Localnet
-  // const connection = new Connection('http://127.0.0.1:8899', 'confirmed');
-
-  // Devnet
-  // const connection = new Connection(clusterApiUrl('devnet'), 'confirmed');
 
   async function getProvider() {
     const wallet = window.solana;
@@ -51,24 +47,10 @@ export const MintNft = () => {
     //  Details: https://docs.metaplex.com/token-metadata/specification
     //  Example: https://arweave.net/3wXyF1wvK6ARJ_9ue-O58CMuXrz5nyHEiPFQ6z5q02E
 
-    // const txId = valueArTransactionId;
-
-    // --- Localnet ---
-    // const uri = 'http://127.0.0.1:1984/'; // Localnet
-
-    // --- Testnet ---
-    // Note: Tesnet powered by https://redstone.finance/
-    // const uri = 'https://testnet.redstone.tools/';
-    // const txId = 'vUOW3yPQiLBnVhU1XpyBeHeraxP9C4_OLkioHMCxhQY'; // Stub
-
-    // --- Mainnet ---
-    // const uri = 'https://arweave.net/';
-    // const txId = '8aghhbZGkA8rsi6lTtkMq6eNOLBTUM54Jitjk8A_wNo'; // Stub
-
     const mintNftResponse = await actions.mintNFT({
       connection,
       wallet: provider.wallet, // It need to match your wallet and creators address of Metadata.
-      uri: getTransactionUrl(arweave.api.config, valueArTransactionId),
+      uri: getArweaveTransactionUrl(arweave.api.config, valueArTransactionId),
       maxSupply: 1
     });
 

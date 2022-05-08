@@ -11,10 +11,10 @@ import {
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { ArweaveClusterContext } from '../../providers/ArweaveCluster';
 import { ArTransactionIdContext } from '../../providers/ArweaveTransactionId';
-import { getTransactionUrl } from '../../helpers/arweave';
+import { getArweaveTransactionUrl } from '../../helpers/arweave';
 
 export const ArweaveTools = () => {
-  const { arweave, changeCluster } = useContext(ArweaveClusterContext);
+  const { arweave, changeArweaveCluster } = useContext(ArweaveClusterContext);
 
   const { valueArTransactionId, setNewArTransactionId } = useContext(ArTransactionIdContext);
 
@@ -30,7 +30,7 @@ export const ArweaveTools = () => {
     const transaction = await arweave.transactions.get(valueArTransactionId);
     console.log(transaction);
 
-    const url = getTransactionUrl(arweave.api.config, valueArTransactionId);
+    const url = getArweaveTransactionUrl(arweave.api.config, valueArTransactionId);
     console.log('Transaction URL =>', url);
   }
 

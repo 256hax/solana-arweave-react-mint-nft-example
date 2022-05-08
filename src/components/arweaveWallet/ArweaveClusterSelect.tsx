@@ -10,10 +10,10 @@ import {
 import { ArweaveClusterContext } from '../../providers/ArweaveCluster';
 
 export const ArweaveClusterSelect = () => {
-  const { arweave, changeCluster } = useContext(ArweaveClusterContext);
+  const { arweave, changeArweaveCluster } = useContext(ArweaveClusterContext);
 
-  const onChangeCluster = (event: SelectChangeEvent) => {
-    changeCluster(event.target.value);
+  const onchangeArweaveCluster = (event: SelectChangeEvent) => {
+    changeArweaveCluster(event.target.value);
   };
 
   return (
@@ -23,7 +23,7 @@ export const ArweaveClusterSelect = () => {
         <Select
           value={arweave.api.config.host}
           label="Arweave Cluster"
-          onChange={onChangeCluster}
+          onChange={onchangeArweaveCluster}
         >
           <MenuItem value="127.0.0.1">Localnet (127.0.01)</MenuItem>
           <MenuItem value="www.arweave.run">Testnet (www.arweave.run)</MenuItem>

@@ -37,7 +37,7 @@ const initArweave = (cluster: ValueClusterType) => {
 
 const defaultValue = {
   arweave: initArweave(Cluster.testnet),
-  changeCluster: (cluster: string) => {},
+  changeArweaveCluster: (cluster: string) => {},
 };
 export const ArweaveClusterContext = createContext(defaultValue);
 
@@ -49,7 +49,7 @@ export const ArweaveClusterContextProvider: FC<Props> = ({children}) => {
   const context = useContext(ArweaveClusterContext);
   const [arweave, setCluster] = useState(context.arweave);
 
-  const changeCluster = (host: string) => {
+  const changeArweaveCluster = (host: string) => {
     switch (host) {
       case '127.0.0.1':
         setCluster(initArweave(Cluster.localnet));
@@ -67,7 +67,7 @@ export const ArweaveClusterContextProvider: FC<Props> = ({children}) => {
   };
 
   return (
-    <ArweaveClusterContext.Provider value={{ arweave, changeCluster }}>
+    <ArweaveClusterContext.Provider value={{ arweave, changeArweaveCluster }}>
       {children}
     </ArweaveClusterContext.Provider>
   );

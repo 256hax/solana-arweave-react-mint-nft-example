@@ -13,7 +13,7 @@ import { ArweaveClusterContext } from '../../providers/ArweaveCluster';
 import { ArTransactionIdContext } from '../../providers/ArweaveTransactionId';
 import { ArweaveTools } from './ArweaveTools';
 import { UploadFile } from './UploadFile';
-import { getTransactionUrl } from '../../helpers/arweave';
+import { getArweaveTransactionUrl } from '../../helpers/arweave';
 
 // For "Property 'arweaveWallet' does not exist on type 'Window'." error.
 interface Window {
@@ -23,7 +23,7 @@ interface Window {
 declare var window: Window
 
 export const UploadMetadata = () => {
-  const { arweave, changeCluster } = useContext(ArweaveClusterContext);
+  const { arweave, changeArweaveCluster } = useContext(ArweaveClusterContext);
 
   // reference: https://github.com/solana-labs/wallet-adapter#usage
   const { publicKey, sendTransaction } = useWallet();
@@ -221,14 +221,14 @@ export const UploadMetadata = () => {
       <Box sx={{ mb: 4 }}>
         <Grid container>
           <Grid item xs={4}>
-            <Button variant="contained" color="secondary" onClick={sendMetadataTransaction}>Send Transaction(wait a sec)</Button>
+            <Button variant="contained" color="secondary" onClick={sendMetadataTransaction}>Send Transaction (wait a sec)</Button>
           </Grid>
         </Grid>
         <Grid container>
           <Grid item xs={10} sx={{ mt: 2 }}>
             <Typography>
               Arweave Transaction ID: &nbsp;
-              <a href={getTransactionUrl(arweave.api.config, valueArTransactionId)} target="_blank">
+              <a href={getArweaveTransactionUrl(arweave.api.config, valueArTransactionId)} target="_blank">
                 {valueArTransactionId}
               </a>
             </Typography>

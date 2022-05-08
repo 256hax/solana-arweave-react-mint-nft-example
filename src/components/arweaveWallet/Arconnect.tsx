@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect } from 'react';
-import { Box, Grid, Button, Divider } from '@mui/material';
+import { Box, Grid, Button, Divider, Typography } from '@mui/material';
 import { ArweaveClusterContext } from '../../providers/ArweaveCluster';
 import { ArweaveClusterSelect } from './ArweaveClusterSelect';
 
@@ -10,7 +10,7 @@ interface Window {
 declare var window: Window
 
 export const Arconnect = () => {
-  const { arweave, changeCluster } = useContext(ArweaveClusterContext);
+  const { arweave, changeArweaveCluster } = useContext(ArweaveClusterContext);
 
   const[valueConnectLabel, setConnectLabel] = useState('...');
 
@@ -110,6 +110,19 @@ export const Arconnect = () => {
         </Grid>
       </Grid>
 
+      <Divider textAlign="left" sx={{mt: 2, mb: 2}}>Change Wallet Settings</Divider>
+
+      <Grid container>
+        <Grid item xs={12}>
+          <Typography>
+            Change cluster on your ArConnect.
+          </Typography>
+          <Typography>
+            Start ArConnect &gt; Settings &gt; Gateway &gt; select Gateway
+          </Typography>
+        </Grid>
+      </Grid>
+
       <Divider textAlign="left" sx={{mt: 2, mb: 2}}>Optional</Divider>
 
       <Grid container>
@@ -124,6 +137,7 @@ export const Arconnect = () => {
           </Button>
         </Grid>
       </Grid>
+      
     </Box>
   );
 }

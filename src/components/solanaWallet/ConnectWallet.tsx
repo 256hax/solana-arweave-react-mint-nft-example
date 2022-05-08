@@ -3,7 +3,7 @@ import {
     WalletDisconnectButton,
     WalletMultiButton
 } from '@solana/wallet-adapter-react-ui';
-import { Box, Divider, Grid } from '@mui/material';
+import { Box, Divider, Grid, Typography } from '@mui/material';
 import { SolanaClusterSelect } from './SolanaClusterSelect';
 
 
@@ -27,6 +27,19 @@ export const ConnectWallet = () => {
         </Grid>
         <Grid item xs={3}>
           <WalletDisconnectButton />
+        </Grid>
+      </Grid>
+
+      <Divider textAlign="left" sx={{mt: 2, mb: 2}}>Change Wallet Settings</Divider>
+
+      <Grid container>
+        <Grid item xs={12}>
+          <Typography>
+            Change cluster on your Phantom.
+          </Typography>
+          <Typography>
+            Start Phantom &gt; Settings &gt; Change Network &gt; select cluster
+          </Typography>
         </Grid>
       </Grid>
 
