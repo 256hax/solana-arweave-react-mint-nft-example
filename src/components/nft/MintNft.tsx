@@ -12,6 +12,8 @@ import {
 import { ArweaveClusterContext } from '../../providers/ArweaveCluster';
 import { ArTransactionIdContext } from '../../providers/ArweaveTransactionId';
 import { getTransactionUrl } from '../../helpers/arweave';
+import { SolanaClusterContext } from '../../providers/SolanaCluster';
+import { getSolanaTransactionUrl } from '../../helpers/solana';
 
 // For "Property 'solana' does not exist on type 'Window & typeof globalThis'" error.
 interface Window {
@@ -22,13 +24,15 @@ declare var window: Window
 export const MintNft = () => {
   const { arweave, changeCluster } = useContext(ArweaveClusterContext);
   const { valueArTransactionId, setNewArTransactionId } = useContext(ArTransactionIdContext);
+
+  const { connection, changeSolanaCluster } = useContext(SolanaClusterContext);
   const [valueSolTransactionId, setSolTransactionId] = useState('');
 
   // Localnet
   // const connection = new Connection('http://127.0.0.1:8899', 'confirmed');
 
   // Devnet
-  const connection = new Connection(clusterApiUrl('devnet'), 'confirmed');
+  // const connection = new Connection(clusterApiUrl('devnet'), 'confirmed');
 
   async function getProvider() {
     const wallet = window.solana;
@@ -103,13 +107,16 @@ export const MintNft = () => {
       <Box sx={{ mb: 4 }}>
         <Grid container>
           <Grid item xs={4}>
-            <Button variant="contained" color="secondary" onClick={sendTransaction}>Mint NFT</Button>
+            <Button variant="contained" color="secondary" onClick={sendTransaction}>Mint NFT (wait a sec)</Button>
           </Grid>
         </Grid>
         <Grid container>
-          <Grid item xs={10} sx={{ mt: 2 }}>
-            <Typography>Solana Transaction ID: {valueSolTransactionId}</Typography>
-          </Grid>
+          <Typography>
+            Solana Transaction ID: &nbsp;
+            <a href={getSolanaTransactionUrl(connection, valueSolTransactionId)} target="_blank">
+              {valueSolTransactionId}
+            </a>
+          </Typography>
         </Grid>
       </Box>
     </Box>

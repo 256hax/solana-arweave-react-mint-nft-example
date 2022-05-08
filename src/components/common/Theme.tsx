@@ -1,6 +1,7 @@
 import { createTheme, ThemeProvider, Box, Container } from '@mui/material';
 import { ArweaveClusterContextProvider } from '../../providers/ArweaveCluster';
 import { ArTransactionIdContextProvider } from '../../providers/ArweaveTransactionId';
+import { SolanaClusterContextProvider } from '../../providers/SolanaCluster';
 import { Header } from './Header';
 import { HorizontalLinearStepper } from './StepNavigation';
 
@@ -33,8 +34,10 @@ export const Theme = () => {
         <Container maxWidth="md">
           <ArweaveClusterContextProvider>
             <ArTransactionIdContextProvider>
-              <Header />
-              <HorizontalLinearStepper />
+              <SolanaClusterContextProvider>
+                <Header />
+                <HorizontalLinearStepper />
+              </SolanaClusterContextProvider>
             </ArTransactionIdContextProvider>
           </ArweaveClusterContextProvider>
         </Container>

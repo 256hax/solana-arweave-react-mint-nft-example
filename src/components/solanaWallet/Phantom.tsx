@@ -18,7 +18,9 @@ import {
     WalletMultiButton
 } from '@solana/wallet-adapter-react-ui';
 import { clusterApiUrl } from '@solana/web3.js';
+
 import { Box } from '@mui/material';
+import { ConnectWallet } from './ConnectWallet';
 import { UploadMetadata } from '../metadata/UploadMetadata';
 import { MintNft } from '../nft/MintNft';
 
@@ -29,10 +31,7 @@ export const getStepContent = (step: number) => {
   switch (step) {
     case 1: // Step 2
       return(
-        <Box>
-          <WalletMultiButton />
-          <WalletDisconnectButton />
-        </Box>
+        <ConnectWallet />
       );
     case 2: // Step 3
       return(
