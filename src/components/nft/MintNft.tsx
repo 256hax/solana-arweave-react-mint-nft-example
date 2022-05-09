@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { clusterApiUrl, Connection, } from '@solana/web3.js';
 import { AnchorProvider } from "@project-serum/anchor";
 import { actions } from '@metaplex/js';
@@ -8,6 +8,8 @@ import {
   Button,
   TextField,
   Typography,
+  Card,
+  CardMedia,
 } from '@mui/material';
 
 import { ArweaveClusterContext } from '../../providers/ArweaveCluster';
@@ -29,6 +31,16 @@ export const MintNft = () => {
 
   const { connection, changeSolanaCluster } = useContext(SolanaClusterContext);
   const [valueSolTransactionId, setSolTransactionId] = useState('');
+
+  const [valueNftImage, setNftImage] = useState('');
+
+  useEffect(() => {
+    const getNftImage = async() => {
+      const tx_api_get_decoded = await arweave.api.get('/' + valueArTransactionId);
+      setNftImage(tx_api_get_decoded.data.image);
+    };
+    getNftImage();
+  }, []);
 
   async function getProvider() {
     const wallet = window.solana;
@@ -83,7 +95,17 @@ export const MintNft = () => {
           label="Arweave Transaction ID"
           fullWidth
         />
-        <Typography>Note: Minting allows when Creators Address equal to Your Address(ex: Phantom) in Metadata.</Typography>
+      </Box>
+
+      <Box>
+        <Card sx={{ maxWidth: 300, mb: 4, ml: 1 }}>
+          <CardMedia
+            component="img"
+            alt="Mint NFT Image"
+            height="200"
+            image={valueNftImage}
+          />
+        </Card>
       </Box>
 
       <Box sx={{ mb: 4 }}>
@@ -101,6 +123,15 @@ export const MintNft = () => {
           </Typography>
         </Grid>
       </Box>
+
+      <Box sx={{ mb: 4 }}>
+        <Grid container>
+          <Grid item>
+            <Typography>Note: Minting allows when Creators Address equal to Your Address(ex: Phantom) in Metadata.</Typography>
+          </Grid>
+        </Grid>
+      </Box>
+
     </Box>
   );
 }
