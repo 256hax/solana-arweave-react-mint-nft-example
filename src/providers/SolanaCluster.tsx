@@ -4,6 +4,7 @@ import { ValueClusterType } from '../types/solana';
 
 export const Cluster = {
   devnet: 'https://api.devnet.solana.com',
+  testnet: 'https://api.testnet.solana.com',
   mainnet: 'https://api.mainnet-beta.solana.com',
 }
 
@@ -31,6 +32,9 @@ export const SolanaClusterContextProvider: FC<Props> = ({children}) => {
     switch (cluster) {
       case 'https://api.devnet.solana.com':
         setCluster(initConnection(Cluster.devnet));
+        break;
+      case 'https://api.testnet.solana.com':
+        setCluster(initConnection(Cluster.testnet));
         break;
       case 'https://api.mainnet-beta.solana.com':
         setCluster(initConnection(Cluster.mainnet));
