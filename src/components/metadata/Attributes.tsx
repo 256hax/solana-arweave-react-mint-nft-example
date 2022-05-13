@@ -28,7 +28,7 @@ export const Attributes = (props: any) => {
     <Box>
       {props.stateValue.map((value: attributesType, index: number) => {
         return (
-          <Box key={index} sx={{ m:1 }}>
+          <Box key={index} sx={{ m: 1 }}>
             <TextField
               name='type'
               label='Type'
