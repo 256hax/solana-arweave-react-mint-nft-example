@@ -11,6 +11,8 @@ import {
 import { useWallet } from '@solana/wallet-adapter-react';
 import { ArweaveClusterContext } from '../../providers/ArweaveCluster';
 import { ArTransactionIdContext } from '../../providers/ArweaveTransactionId';
+import { attributesType } from '../../types/metadata';
+import { Attributes } from './Attributes';
 import { ArweaveTools } from './ArweaveTools';
 import { UploadFile } from './UploadFile';
 import { getArweaveTransactionUrl } from '../../helpers/arweave';
@@ -47,6 +49,11 @@ export const UploadMetadata = () => {
     }
   }
 
+  const defaultValue: attributesType = {
+    type: '',
+    value: '',
+  };
+
   const { valueArTransactionId, setNewArTransactionId } = useContext(ArTransactionIdContext);
 
   // --- Metadata Summary ---
@@ -62,9 +69,7 @@ export const UploadMetadata = () => {
   const [valueCollectionFamily, setCollectionFamily] = useState('');
 
   // --- Metadata Atrributes ---
-  const [valueAttributesTraitType, setAttributesTraitType] = useState('');
-  const [valueAttributesTraitValue, setAttributesTraitValue] = useState('');
-
+  const [valueAttributes, setAttributes] = useState([defaultValue]);
   // --- Metadata Creators ---
   const [valuePropertiesCreatorsAddress, setPropertiesCreatorsAddress] = useState('');
   const [valuePropertiesCreatorsShare, setPropertiesCreatorsShare] = useState('100');
@@ -83,12 +88,7 @@ export const UploadMetadata = () => {
         name: valueCollectionName,
         family: valueCollectionFamily,
       },
-      attributes: [
-        {
-          trait_type: valueAttributesTraitType,
-          value: valueAttributesTraitValue,
-        },
-      ],
+      attributes: valueAttributes,
       properties: {
         creators: [
           {
@@ -186,16 +186,7 @@ export const UploadMetadata = () => {
 
         <Divider textAlign="left" sx={{mt: 2, mb: 2}}>Attributes</Divider>
 
-        <TextField
-          value={valueAttributesTraitType}
-          onChange={event => setAttributesTraitType(event.target.value)}
-          label="Attributes Trait Type"
-        />
-        <TextField
-          value={valueAttributesTraitValue}
-          onChange={event => setAttributesTraitValue(event.target.value)}
-          label="Attributes Trait Value"
-        />
+        <Attributes stateValue={valueAttributes} stateSetValue={setAttributes} />
 
         <Divider textAlign="left" sx={{mt: 2, mb: 2}}>Creators</Divider>
 
