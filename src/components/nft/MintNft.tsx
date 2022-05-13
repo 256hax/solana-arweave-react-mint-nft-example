@@ -1,5 +1,4 @@
 import { useContext, useState, useEffect } from 'react';
-import { clusterApiUrl, Connection, } from '@solana/web3.js';
 import { AnchorProvider } from "@project-serum/anchor";
 import { actions } from '@metaplex/js';
 import {
@@ -76,7 +75,7 @@ export const MintNft = () => {
 
   return(
     <Box>
-      <Box sx={{ mb:2 }}>
+      <Box sx={{ mb: 2 }}>
         <Typography>
           Mint NFT on Solana Chain.
         </Typography>

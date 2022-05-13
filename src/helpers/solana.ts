@@ -15,6 +15,10 @@ export const getSolanaTransactionUrl = (connection: any, id: string) => {
       const url = explorerBaseUrl + id + '?cluster=devnet';
       return url;
     }
+    case Cluster.testnet: {
+      const url = explorerBaseUrl + id + '?cluster=testnet';
+      return url;
+    }
     case Cluster.mainnet: {
       const url = explorerBaseUrl + id;
       return url
