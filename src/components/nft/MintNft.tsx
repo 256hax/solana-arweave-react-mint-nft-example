@@ -110,10 +110,10 @@ export const MintNft = () => {
       <Box sx={{ mb: 4 }}>
         <Grid container>
           <Grid item xs={4}>
-            <Button variant="contained" color="secondary" onClick={sendTransaction}>Mint NFT (wait a sec)</Button>
+            <Button variant="contained" color="primary" onClick={sendTransaction}>Mint NFT (wait a sec)</Button>
           </Grid>
         </Grid>
-        <Grid container>
+        <Grid container sx={{ mt: 2 }}>
           <Typography>
             Solana Transaction ID: &nbsp;
             <a href={getSolanaTransactionUrl(connection, valueSolTransactionId)} target="_blank">
@@ -123,7 +123,7 @@ export const MintNft = () => {
         </Grid>
       </Box>
 
-      <Box sx={{ mb: 4 }}>
+      <Box>
         <Grid container>
           <Grid item>
             <Typography>Note: Minting allows when Creators Address equal to Your Address(ex: Phantom) in Metadata.</Typography>

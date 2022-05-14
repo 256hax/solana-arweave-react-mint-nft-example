@@ -4,13 +4,12 @@ import { ArTransactionIdContextProvider } from '../../providers/ArweaveTransacti
 import { SolanaClusterContextProvider } from '../../providers/SolanaCluster';
 import { Header } from './Header';
 import { HorizontalLinearStepper } from './StepNavigation';
+import { Footer } from './Footer';
 
 const theme = createTheme({
   components: {
-    // Name of the component ⚛️
     MuiButtonBase: {
       defaultProps: {
-        // The props to apply
         disableRipple: true, // No more ripple, on the whole application 💣!
       },
     },
@@ -31,16 +30,17 @@ export const Theme = () => {
   return(
     <ThemeProvider theme={theme}>
       <Box>
+        <Header />
         <Container maxWidth="md">
           <ArweaveClusterContextProvider>
             <ArTransactionIdContextProvider>
               <SolanaClusterContextProvider>
-                <Header />
                 <HorizontalLinearStepper />
               </SolanaClusterContextProvider>
             </ArTransactionIdContextProvider>
           </ArweaveClusterContextProvider>
         </Container>
+        <Footer />
       </Box>
     </ThemeProvider>
   );

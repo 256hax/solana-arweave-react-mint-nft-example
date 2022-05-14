@@ -99,12 +99,12 @@ export const Arconnect = () => {
 
       <Grid container>
         <Grid item xs={3}>
-          <Button variant="contained" color="secondary" onClick={connectWallet} sx={connectButtonSX}>
+          <Button variant="contained" color="primary" onClick={connectWallet} sx={connectButtonSX}>
             {valueConnectLabel}
           </Button>
         </Grid>
         <Grid item xs={3}>
-          <Button variant="contained" color="secondary" onClick={disconnetWallet}>
+          <Button variant="contained" color="primary" onClick={disconnetWallet}>
             Disconnect
           </Button>
         </Grid>
@@ -127,17 +127,17 @@ export const Arconnect = () => {
 
       <Grid container>
         <Grid item xs={3}>
-          <Button variant="contained" color="secondary" onClick={getBalance}>
+          <Button variant="outlined" color="primary" onClick={getBalance}>
             Get Balance
           </Button>
         </Grid>
         <Grid item xs={3}>
-          <Button variant="contained" color="secondary" onClick={airdrop}>
+          <Button variant="outlined" color="primary" onClick={airdrop}>
             Airdrop
           </Button>
         </Grid>
       </Grid>
-      
+
     </Box>
   );
 }

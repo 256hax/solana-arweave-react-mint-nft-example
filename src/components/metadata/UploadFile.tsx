@@ -62,7 +62,7 @@ export const UploadFile = () => {
               <input type="file" onChange={changeHandler} />
             </Grid>
             <Grid item xs={3}>
-              <Button variant="contained" color="secondary" onClick={sendTransaction}>Upload to Arweave</Button>
+              <Button variant="outlined" color="primary" onClick={sendTransaction}>Upload to Arweave</Button>
             </Grid>
           </Grid>
         </AccordionDetails>

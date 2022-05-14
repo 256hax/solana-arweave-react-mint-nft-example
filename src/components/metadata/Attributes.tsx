@@ -41,12 +41,12 @@ export const Attributes = (props: any) => {
               onChange={event => handleAttributesChange(event, index)}
               value={value.value}
             />
-            <Button color="secondary" onClick={() => removeAttributes(index)}>Remove</Button>
+            <Button color="primary" onClick={() => removeAttributes(index)}>Remove</Button>
           </Box>
         )
       })}
       <Box>
-        <Button color="secondary" onClick={addAttributes}>Add</Button>
+        <Button color="primary" onClick={addAttributes}>Add</Button>
       </Box>
     </Box>
   );

@@ -195,7 +195,7 @@ export const UploadMetadata = () => {
             value={valuePropertiesCreatorsAddress}
             onChange={event => setPropertiesCreatorsAddress(event.target.value)}
             label="Creators Address"
-            color="secondary"
+            color="primary"
             focused
           />
         </Tooltip>
@@ -212,18 +212,16 @@ export const UploadMetadata = () => {
       <Box sx={{ mb: 4 }}>
         <Grid container>
           <Grid item xs={4}>
-            <Button variant="contained" color="secondary" onClick={sendMetadataTransaction}>Send Transaction (wait a sec)</Button>
+            <Button variant="contained" color="primary" onClick={sendMetadataTransaction}>Send Transaction (wait a sec)</Button>
           </Grid>
         </Grid>
-        <Grid container>
-          <Grid item xs={10} sx={{ mt: 2 }}>
-            <Typography>
-              Arweave Transaction ID: &nbsp;
-              <a href={getArweaveTransactionUrl(arweave.api.config, valueArTransactionId)} target="_blank">
-                {valueArTransactionId}
-              </a>
-            </Typography>
-          </Grid>
+        <Grid container sx={{ mt: 2 }}>
+          <Typography>
+            Arweave Transaction ID: &nbsp;
+            <a href={getArweaveTransactionUrl(arweave.api.config, valueArTransactionId)} target="_blank">
+              {valueArTransactionId}
+            </a>
+          </Typography>
         </Grid>
       </Box>
 

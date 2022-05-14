@@ -55,13 +55,13 @@ export const ArweaveTools = () => {
         <AccordionDetails>
           <Grid container>
             <Grid item xs={4}>
-              <Button variant="contained" color="secondary" onClick={mineTransaction}>Mine Transaction(for Localnet)</Button>
+              <Button variant="outlined" color="primary" onClick={mineTransaction}>Mine Transaction(for Localnet)</Button>
             </Grid>
             <Grid item xs={3}>
-              <Button variant="contained" color="secondary" onClick={getTransaction}>Get Transaction</Button>
+              <Button variant="outlined" color="primary" onClick={getTransaction}>Get Transaction</Button>
             </Grid>
             <Grid item xs={3}>
-              <Button variant="contained" color="secondary" onClick={getUploadedData}>Get Uploaded Data</Button>
+              <Button variant="outlined" color="primary" onClick={getUploadedData}>Get Uploaded Data</Button>
             </Grid>
           </Grid>
         </AccordionDetails>

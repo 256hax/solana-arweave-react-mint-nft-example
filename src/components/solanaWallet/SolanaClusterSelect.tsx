@@ -26,7 +26,7 @@ export const SolanaClusterSelect = () => {
           onChange={onChangeCluster}
         >
           <MenuItem value="https://api.devnet.solana.com">Devnet (api.devnet.solana.com)</MenuItem>
-          <MenuItem value="https://api.testnet.solana.com">Testnet (https://api.testnet.solana.com)</MenuItem>
+          <MenuItem value="https://api.testnet.solana.com">Testnet (api.testnet.solana.com)</MenuItem>
           <MenuItem value="https://api.mainnet-beta.solana.com">Mainnet Beta (api.mainnet-beta.solana.com)</MenuItem>
         </Select>
       </FormControl>
