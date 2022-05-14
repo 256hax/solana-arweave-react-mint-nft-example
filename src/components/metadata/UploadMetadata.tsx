@@ -4,9 +4,10 @@ import {
   Tooltip,
   Button,
   Divider,
+  Grid,
   TextField,
   Typography,
-  Grid,
+  Link,
 } from '@mui/material';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { ArweaveClusterContext } from '../../providers/ArweaveCluster';
@@ -118,11 +119,24 @@ export const UploadMetadata = () => {
       <Box>
         <Typography>
           Upload Metadata to Arweave. Input Example:&nbsp;
-          <a href="https://docs.metaplex.com/token-metadata/Versions/v1.0.0/nft-standard" target="_blank">Metaplex</a>
+          <Link
+            href="https://docs.metaplex.com/token-metadata/Versions/v1.0.0/nft-standard"
+            target="_blank">
+            Metaplex
+          </Link>
           &nbsp;|&nbsp;
-          <a href="https://arweave.net/3wXyF1wvK6ARJ_9ue-O58CMuXrz5nyHEiPFQ6z5q02E" target="_blank">Arweave</a>
+          <Link
+            href="https://arweave.net/3wXyF1wvK6ARJ_9ue-O58CMuXrz5nyHEiPFQ6z5q02E"
+            target="_blank"
+          >
+            Arweave
+          </Link>
           &nbsp;|&nbsp;
-          <a href="https://explorer.solana.com/address/9ARngHhVaCtH5JFieRdSS5Y8cdZk2TMF4tfGSWFB9iSK/metadata" target="_blank">Solana Explorer</a>
+          <Link
+            href="https://explorer.solana.com/address/9ARngHhVaCtH5JFieRdSS5Y8cdZk2TMF4tfGSWFB9iSK/metadata"
+            target="_blank">
+            Solana Explorer
+          </Link>
         </Typography>
       </Box>
 
@@ -218,9 +232,9 @@ export const UploadMetadata = () => {
         <Grid container sx={{ mt: 2 }}>
           <Typography>
             Arweave Transaction ID: &nbsp;
-            <a href={getArweaveTransactionUrl(arweave.api.config, valueArTransactionId)} target="_blank">
+            <Link href={getArweaveTransactionUrl(arweave.api.config, valueArTransactionId)} target="_blank">
               {valueArTransactionId}
-            </a>
+            </Link>
           </Typography>
         </Grid>
       </Box>

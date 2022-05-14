@@ -9,6 +9,7 @@ import {
   Typography,
   Card,
   CardMedia,
+  Link,
 } from '@mui/material';
 
 import { ArweaveClusterContext } from '../../providers/ArweaveCluster';
@@ -97,7 +98,7 @@ export const MintNft = () => {
       </Box>
 
       <Box>
-        <Card sx={{ maxWidth: 300, mb: 4, ml: 1 }}>
+        <Card sx={{ maxWidth: 200, mb: 4, ml: 1 }}>
           <CardMedia
             component="img"
             alt="Mint NFT Image"
@@ -116,9 +117,9 @@ export const MintNft = () => {
         <Grid container sx={{ mt: 2 }}>
           <Typography>
             Solana Transaction ID: &nbsp;
-            <a href={getSolanaTransactionUrl(connection, valueSolTransactionId)} target="_blank">
+            <Link href={getSolanaTransactionUrl(connection, valueSolTransactionId)} target="_blank">
               {valueSolTransactionId}
-            </a>
+            </Link>
           </Typography>
         </Grid>
       </Box>
