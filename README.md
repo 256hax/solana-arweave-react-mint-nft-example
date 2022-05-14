@@ -23,4 +23,8 @@ If you get no response when send transaction,
 - check your balance.
 
 ## Reference
-[Solana Cookbook - Non Fungible Tokens (NFTs)](https://solanacookbook.com/references/nfts.html#how-to-create-an-nft)
+- [Solana Cookbook - Non Fungible Tokens (NFTs)](https://solanacookbook.com/references/nfts.html#how-to-create-an-nft)
+- [Metaplex - Token Metadata Standard](https://docs.metaplex.com/token-metadata/Versions/v1.0.0/nft-standard)
+- [Phantom - Non-Fungible Tokens (NFTs)](https://docs.phantom.app/best-practices/tokens/non-fungible-tokens)
+- [Arweave - HTTP API](https://docs.arweave.org/developers/server/http-api)
+- [solana-labs - wallet-adapter](https://github.com/solana-labs/wallet-adapter)
