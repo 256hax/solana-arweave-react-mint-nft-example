@@ -18,29 +18,29 @@ export const ArweaveTools = () => {
 
   const { valueArTransactionId, setNewArTransactionId } = useContext(ArTransactionIdContext);
 
-  async function mineTransaction() {
+  const mineTransaction = async() => {
     const response = await arweave.api.get('mine/');
     console.log(response);
 
     const transaction = await arweave.transactions.get(valueArTransactionId);
     console.log(transaction.block);
-  }
+  };
 
-  async function getTransaction() {
+  const getTransaction = async() => {
     const transaction = await arweave.transactions.get(valueArTransactionId);
     console.log(transaction);
 
     const url = getArweaveTransactionUrl(arweave.api.config, valueArTransactionId);
     console.log('Transaction URL =>', url);
-  }
+  };
 
-  async function getUploadedData() {
+  const getUploadedData = async() => {
     const tx_api_get_base64 = await arweave.api.get('/tx/' + valueArTransactionId + '/data');
     console.log('Base64 Data =>', tx_api_get_base64.data);
 
     const tx_api_get_decoded = await arweave.api.get('/' + valueArTransactionId);
     console.log('Decoded Data =>', tx_api_get_decoded.data);
-  }
+  };
 
   return (
     <Box sx={{ mt: 1}}>

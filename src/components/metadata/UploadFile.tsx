@@ -22,7 +22,7 @@ export const UploadFile = () => {
     setFile(event.target.files[0]);
    };
 
-  async function sendTransaction() {
+  const sendTransaction = async() => {
     if(valueFile) {
       const data = await valueFile.arrayBuffer();
 
@@ -41,7 +41,7 @@ export const UploadFile = () => {
     } else {
       console.log('Undefined image');
     }
-  }
+  };
 
   return (
     <Box>

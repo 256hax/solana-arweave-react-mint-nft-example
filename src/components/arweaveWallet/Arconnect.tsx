@@ -25,16 +25,16 @@ export const Arconnect = () => {
     initConnectLabel();
   }, []);
 
-  async function updateConnectLabel() {
+  const updateConnectLabel = async() => {
     try {
       const address = await window.arweaveWallet.getActiveAddress();
       setConnectLabel(address);
     } catch(e) {
       setConnectLabel('Connect ArConnect');
     }
-  }
+  };
 
-  async function connectWallet() {
+  const connectWallet = async() => {
     if (window.arweaveWallet) {
       // Permissions: https://github.com/th8ta/ArConnect#permissions
       await window.arweaveWallet.connect([
@@ -48,30 +48,30 @@ export const Arconnect = () => {
     } else {
       console.log("Couldn't find ArConnect on your browser.");
     }
-  }
+  };
 
-  async function disconnetWallet() {
+  const disconnetWallet = async() => {
     await window.arweaveWallet.disconnect();
 
     await updateConnectLabel();
     console.log('Disconnected!');
-  }
+  };
 
-  async function getBalance() {
+  const getBalance = async() => {
     const address = await window.arweaveWallet.getActiveAddress();
     const balance = await arweave.wallets.getBalance(address);
     const ar = arweave.ar.winstonToAr(balance);
 
     console.log(balance, 'Winston');
     console.log(ar, 'AR');
-  }
+  };
 
-  async function airdrop() {
+  const airdrop = async() => {
     const address = await window.arweaveWallet.getActiveAddress();
     // 100 AR = 100000000000000 Winston
     const response = await arweave.api.get('mint/' + address + '/100000000000000');
     console.log(response);
-  }
+  };
 
   // Ellipsis for MUI Button
   const connectButtonSX = {

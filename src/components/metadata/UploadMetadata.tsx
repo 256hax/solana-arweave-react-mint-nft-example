@@ -42,13 +42,13 @@ export const UploadMetadata = () => {
     initCreatorsAddressLabel();
   }, []);
 
-  async function setWalletAddressToCreatorsAddress() {
+  const setWalletAddressToCreatorsAddress = async() => {
     if(publicKey){
       setPropertiesCreatorsAddress(publicKey.toString());
     } else {
       setPropertiesCreatorsAddress('');
     }
-  }
+  };
 
   const defaultValue: attributesType = {
     type: '',
@@ -75,7 +75,7 @@ export const UploadMetadata = () => {
   const [valuePropertiesCreatorsAddress, setPropertiesCreatorsAddress] = useState('');
   const [valuePropertiesCreatorsShare, setPropertiesCreatorsShare] = useState('100');
 
-  async function sendMetadataTransaction() {
+  const sendMetadataTransaction = async() => {
     // Token Metadata Standard: https://docs.metaplex.com/token-metadata/Versions/v1.0.0/nft-standard
     // Phantom: https://docs.phantom.app/best-practices/tokens/non-fungible-tokens
     const inputMetadata = {
@@ -112,7 +112,7 @@ export const UploadMetadata = () => {
       await uploader.uploadChunk();
       console.log(`${uploader.pctComplete}% complete, ${uploader.uploadedChunks}/${uploader.totalChunks}`);
     }
-  }
+  };
 
   return (
     <Box>

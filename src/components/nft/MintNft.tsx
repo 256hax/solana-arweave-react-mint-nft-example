@@ -42,16 +42,16 @@ export const MintNft = () => {
     getNftImage();
   }, []);
 
-  async function getProvider() {
+  const getProvider = async() => {
     const wallet = window.solana;
 
     const provider = new AnchorProvider(
       connection, wallet, { commitment: 'processed' }
     );
     return provider;
-  }
+  };
 
-  async function sendTransaction() {
+  const sendTransaction = async() => {
     const provider = await getProvider();
 
     // Note:
@@ -72,7 +72,7 @@ export const MintNft = () => {
     console.log('mint =>', mintNftResponse.mint.toString());
     console.log('metadata =>', mintNftResponse.metadata.toString());
     console.log('edition =>', mintNftResponse.edition.toString());
-  }
+  };
 
   return(
     <Box>

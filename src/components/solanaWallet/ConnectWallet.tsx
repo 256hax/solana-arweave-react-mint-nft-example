@@ -19,7 +19,7 @@ declare var window: Window
 export const ConnectWallet = () => {
   const { connection, changeSolanaCluster } = useContext(SolanaClusterContext);
 
-  async function getProvider() {
+  const getProvider = async() => {
     const wallet = window.solana;
 
     const provider = new AnchorProvider(
@@ -28,14 +28,14 @@ export const ConnectWallet = () => {
     return provider;
   }
 
-  async function getBalance() {
+  const getBalance = async() => {
     const provider = await getProvider();
     const connection = provider.connection;
     const balance = await connection.getBalance(provider.wallet.publicKey);
     console.log('Balance:', balance / LAMPORTS_PER_SOL, 'SOL');
-  }
+  };
 
-  async function airdrop() {
+  const airdrop = async() => {
     const provider = await getProvider();
     const connection = provider.connection;
     const wallet = provider.wallet.publicKey;
@@ -51,7 +51,7 @@ export const ConnectWallet = () => {
     } catch (err) {
       console.log('Transaction Error: ', err);
     }
-  }
+  };
 
   return(
     <Box>
