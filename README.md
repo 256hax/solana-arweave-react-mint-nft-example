@@ -5,6 +5,9 @@ Experiment purpose only.
 This sample uses only Web3.js(Arweave and Solana) on React.  
 I don't use Candy Machine v2, Metaplex Storefront, Next.js and Redux.
 
+I tried to make minimal example so I don't think good UI/UX.  
+Please refine depends on your project.
+
 ## Run
 ```
 % npm install
