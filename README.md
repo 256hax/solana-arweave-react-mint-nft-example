@@ -2,8 +2,17 @@
 Mint NFT with React on Arweave and Solana chain for customizable example.  
 Experiment purpose only.
 
-This sample uses only Web3.js(Arweave and Solana) on React.
+This sample uses only Web3.js(Arweave and Solana) on React.  
 I don't use Candy Machine v2, Metaplex Storefront, Next.js and Redux.
+
+## Run
+```
+% npm install
+% npm start
+```
+
+Open Developer Tools in Chrome.  
+It will show log at "Console" menu.
 
 ## Frameworks / Packages Summary
 ### Frontend
@@ -25,14 +34,6 @@ I don't use Candy Machine v2, Metaplex Storefront, Next.js and Redux.
 - [Web3.js - Metaplex actions mintNFT](https://metaplex-foundation.github.io/js/modules/actions.html#mintNFT)
 
 
-## Run
-```
-% npm install
-% npm start
-```
-
-Open Developer Tools in Chrome.  
-It will show log at "Console" menu.
 
 ## Screenshot
 ### 1. Connect ArConnect
