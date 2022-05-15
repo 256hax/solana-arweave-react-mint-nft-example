@@ -36,8 +36,6 @@ It will show log at "Console" menu.
 - [Web3.js - solana-labs wallet-adapter](https://github.com/solana-labs/wallet-adapter)
 - [Web3.js - Metaplex actions mintNFT](https://metaplex-foundation.github.io/js/modules/actions.html#mintNFT)
 
-
-
 ## Screenshot
 ### 1. Connect ArConnect
 <img src="https://github.com/256hax/solana-arweave-react-mint-nft-example/blob/main/docs/screenshot/1_connect_arconnect.png" width="600">  
