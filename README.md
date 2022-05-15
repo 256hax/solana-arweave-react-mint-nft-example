@@ -55,3 +55,4 @@ If you get no response when send transaction,
 
 ## Reference
 - [Solana Cookbook - Non Fungible Tokens (NFTs)](https://solanacookbook.com/references/nfts.html#how-to-create-an-nft)
+- [Solana x Anchor x React Minimal Example](https://github.com/256hax/solana-anchor-react-minimal-example)
