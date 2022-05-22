@@ -1,3 +1,4 @@
+// Ref: https://metaplex-foundation.github.io/js/modules/actions.html#mintEditionFromMaster
 import { useContext, useState } from 'react';
 import { PublicKey } from '@solana/web3.js';
 import { AnchorProvider } from "@project-serum/anchor";
@@ -74,6 +75,11 @@ export const MintEdition = () => {
               onChange={event => setMasterEditionAddress(event.target.value)}
               fullWidth
             />
+            <Grid container>
+              <Typography>
+                Note: "Max Supply" of Master Edition need more than 1.
+              </Typography>
+            </Grid>
             <Grid container>
               <Grid item xs={4}>
                 <Button variant="outlined" color="primary" onClick={mintEdition}>Mint Edition</Button>
