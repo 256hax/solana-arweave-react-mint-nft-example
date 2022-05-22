@@ -14,7 +14,6 @@ import { getArweaveTransactionUrl } from '../../helpers/arweave';
 
 export const UploadFile = () => {
   const { arweave, changeArweaveCluster } = useContext(ArweaveClusterContext);
-
   const [valueFile, setFile] = useState<File>();
 
   const changeHandler = (event: any) => {

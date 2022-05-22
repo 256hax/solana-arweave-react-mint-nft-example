@@ -15,7 +15,6 @@ import { getArweaveTransactionUrl } from '../../helpers/arweave';
 
 export const ArweaveTools = () => {
   const { arweave, changeArweaveCluster } = useContext(ArweaveClusterContext);
-
   const { valueArTransactionId, setNewArTransactionId } = useContext(ArTransactionIdContext);
 
   const mineTransaction = async() => {

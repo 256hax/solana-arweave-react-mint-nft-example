@@ -18,6 +18,7 @@ import { getArweaveTransactionUrl } from '../../helpers/arweave';
 
 import { SolanaClusterContext } from '../../providers/SolanaCluster';
 import { getSolanaTransactionUrl } from '../../helpers/solana';
+import { MintEdition } from './MintEdition';
 
 // For "Property 'solana' does not exist on type 'Window & typeof globalThis'" error.
 interface Window {
@@ -31,6 +32,7 @@ export const MintNft = () => {
 
   const { connection, changeSolanaCluster } = useContext(SolanaClusterContext);
   const [valueSolTransactionId, setSolTransactionId] = useState('');
+  const [valueMaxSupply, setMaxSupply] = useState('1');
 
   const [valueNftImage, setNftImage] = useState('');
 
@@ -63,7 +65,7 @@ export const MintNft = () => {
       connection,
       wallet: provider.wallet, // It need to match your wallet and creators address of Metadata.
       uri: getArweaveTransactionUrl(arweave.api.config, valueArTransactionId),
-      maxSupply: 1
+      maxSupply: Number(valueMaxSupply),
     });
 
     setSolTransactionId(mintNftResponse.mint.toString());
@@ -90,6 +92,12 @@ export const MintNft = () => {
         noValidate
         autoComplete="off"
       >
+        <TextField
+          value={valueMaxSupply}
+          label="Max Supply"
+          onChange={event => setMaxSupply(event.target.value)}
+        />
+
         <TextField
           value={valueArTransactionId}
           label="Arweave Transaction ID"
@@ -124,7 +132,7 @@ export const MintNft = () => {
         </Grid>
       </Box>
 
-      <Box>
+      <Box sx={{ mb: 4 }}>
         <Grid container>
           <Grid item>
             <Typography>Note: Minting allows when Creators Address equal to Your Address(ex: Phantom) in Metadata.</Typography>
@@ -132,6 +140,7 @@ export const MintNft = () => {
         </Grid>
       </Box>
 
+      <MintEdition />
     </Box>
   );
 }
