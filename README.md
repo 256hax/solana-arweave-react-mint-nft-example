@@ -32,6 +32,32 @@ It will show log at "Console" menu.
 - [Docs - Metaplex Token Metadata Standard](https://docs.metaplex.com/token-metadata/Versions/v1.0.0/nft-standard)
 - [Docs - Phantom Non-Fungible Tokens (NFTs)](https://docs.phantom.app/best-practices/tokens/non-fungible-tokens)
 
+## Reinstall Pacakges
+If you need to reinstall, run following
+
+```
+npm add @solana/web3.js
+npm add @project-serum/anchor
+npm add arweave
+npm add @metaplex/js
+
+npm add @solana/wallet-adapter-base \
+         @solana/wallet-adapter-react \
+         @solana/wallet-adapter-react-ui \
+         @solana/wallet-adapter-wallets \
+         @solana/web3.js
+npm add @mui/material \
+         @emotion/react \
+         @emotion/styled
+
+npm add assert
+npm add chai
+npm add stream
+npm add @types/chai
+
+npm add jest @types/jest ts-jest -D
+```
+
 ### NFT
 - [Web3.js - solana-labs wallet-adapter](https://github.com/solana-labs/wallet-adapter)
 - [Web3.js - Metaplex actions mintNFT](https://metaplex-foundation.github.io/js/modules/actions.html#mintNFT)
