@@ -58,10 +58,6 @@ npm add @types/chai
 npm add jest @types/jest ts-jest -D
 ```
 
-### NFT
-- [Web3.js - solana-labs wallet-adapter](https://github.com/solana-labs/wallet-adapter)
-- [Web3.js - Metaplex actions mintNFT](https://metaplex-foundation.github.io/js/modules/actions.html#mintNFT)
-
 ## Screenshot
 ### 1. Connect ArConnect
 <img src="https://github.com/256hax/solana-arweave-react-mint-nft-example/blob/main/docs/screenshot/1_connect_arconnect.png" width="600">  
@@ -75,6 +71,66 @@ npm add jest @types/jest ts-jest -D
 ### 4. Mint NFT
 <img src="https://github.com/256hax/solana-arweave-react-mint-nft-example/blob/main/docs/screenshot/4_mint_nft.png" width="600">  
 
+## TSX Main Compoment Structure
+
+```
+// --- index.tsx ----------------------------------------------------------
+<App />
+
+  // --- App.tsx ----------------------------------------------------------
+  <Theme />
+
+    // --- Theme.tsx ------------------------------------------------------
+    <ThemeProvider theme={theme}>
+      <Header />
+      <ArweaveClusterContextProvider>     // Global value of selected Arweave Cluster
+        <ArTransactionIdContextProvider>  // Global value of Arweave TX ID
+          <SolanaClusterContextProvider>  // Global value of selected Solana Cluster
+            <HorizontalLinearStepper />   // MUI Step Navigation
+
+
+              // --- StepNavigation.tsx -----------------------------------
+
+
+                // Navigation Step 1
+                <Arconnect />             // Connect to ArConnect
+
+                  // --- Arconnect.tsx ------------------------------------
+                  <ArweaveClusterSelect>  // Select Arweave Cluster
+
+
+                // Navigation Step 2
+                <WalletAdapter step={step} />
+
+                  // --- WalletAdapter.tsx --------------------------------
+                  <ConnectWallet />       // Connect to Phantom
+
+                    // --- ConnectWallet.tsx ------------------------------
+                    <SolanaClusterSelect> // Select Solana Cluster
+
+
+                // Navigation Step 3
+                <WalletAdapter step={step} />
+
+                    // --- WalletAdapter.tsx -------------------------------
+                    <UploadMetadata />    // Upload Metadata to Arweave
+
+                    // --- UploadMetadata.tsx -------------------------------
+                    <UploadFile />        // Upload Image to Arweave
+                    <ArweaveTools />      // Arweave Tools(get balance, airdrop)
+
+
+                // Navigation Step 4
+                <WalletAdapter step={step} />
+
+                    // --- WalletAdapter.tsx -------------------------------
+                    <MintNft />
+
+                      // --- MintNft.tsx -----------------------------------
+                      <MintEdition />     // Mint Edition(Copy NFT from Master)
+```
+
+
 ## Troubleshooting
 If you get no response when send transaction,
 - check your cluster settings(devnet/testnet) on your Wallet(ArConnect/Phantom).
@@ -83,3 +139,5 @@ If you get no response when send transaction,
 ## Reference
 - [Solana Cookbook - Non Fungible Tokens (NFTs)](https://solanacookbook.com/references/nfts.html#how-to-create-an-nft)
 - [Solana x Anchor x React Minimal Example](https://github.com/256hax/solana-anchor-react-minimal-example)
+- [Web3.js - solana-labs wallet-adapter](https://github.com/solana-labs/wallet-adapter)
+- [Web3.js - Metaplex actions mintNFT](https://metaplex-foundation.github.io/js/modules/actions.html#mintNFT)
