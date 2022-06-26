@@ -4,7 +4,7 @@ import { Cluster } from '../providers/SolanaCluster';
   Get Transaction URL via Solana Connection
 
   args:
-    arweaveApiConfig: Connection at @solana/web3.js
+    connection: Connection by @solana/web3.js
     id: Solana Transaction ID
 */
 export const getSolanaTransactionUrl = (connection: any, id: string) => {
