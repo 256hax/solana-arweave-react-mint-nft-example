@@ -137,7 +137,9 @@ If you get no response when send transaction,
 - check your balance.
 
 ## Note
-If you don't want to use Arweave, check Metaplex web3.js. uploadImage.ts and uploadMetadata.ts can upload to Arweave instead of Arweave web3.js.
+If you don't want to use Arweave, check Metaplex web3.js.  
+uploadImage.ts and uploadMetadata.ts can upload to Arweave instead of Arweave web3.js.  
+
 [256hax - solana-anchor-react-minimal-example/tree/main/scripts/metaplex/latest/src](https://github.com/256hax/solana-anchor-react-minimal-example/tree/main/scripts/metaplex/latest/src)
 
 ## Reference
