@@ -136,6 +136,10 @@ If you get no response when send transaction,
 - check your cluster settings(devnet/testnet) on your Wallet(ArConnect/Phantom).
 - check your balance.
 
+## Note
+If you don't want to use Arweave, check Metaplex web3.js. uploadImage.ts and uploadMetadata.ts can upload to Arweave instead of Arweave web3.js.
+[256hax - solana-anchor-react-minimal-example/tree/main/scripts/metaplex/latest/src](https://github.com/256hax/solana-anchor-react-minimal-example/tree/main/scripts/metaplex/latest/src)
+
 ## Reference
 - [Solana Cookbook - Non Fungible Tokens (NFTs)](https://solanacookbook.com/references/nfts.html#how-to-create-an-nft)
 - [Solana x Anchor x React Minimal Example](https://github.com/256hax/solana-anchor-react-minimal-example)
