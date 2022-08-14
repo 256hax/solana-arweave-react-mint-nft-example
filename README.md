@@ -137,10 +137,42 @@ If you get no response when send transaction,
 - check your balance.
 
 ## Note
-If you don't want to use Arweave, check Metaplex web3.js.  
-uploadImage.ts and uploadMetadata.ts can upload to Arweave instead of Arweave web3.js.  
+If you need more easy to upload image and metadata for Arweave, check Metaplex web3.js. They have very useful SDK.  
 
-[256hax - solana-anchor-react-minimal-example/tree/main/scripts/metaplex/latest/src](https://github.com/256hax/solana-anchor-react-minimal-example/tree/main/scripts/metaplex/latest/src)
+Write only this code for upload image and metadata! like this:
+
+
+```
+  const metaplex = Metaplex.make(connection)
+      .use(keypairIdentity(wallet))
+      .use(bundlrStorage({
+          address: 'https://devnet.bundlr.network',
+          providerUrl: 'https://api.devnet.solana.com',
+          timeout: 60000,
+      }));
+
+  const { uri } = await metaplex
+      .nfts()
+      .uploadMetadata({
+          name: "My NFT Metadata",
+          description: "My description",
+          image: "https://placekitten.com/200/300",
+      })
+      .run();
+
+  const { nft } = await metaplex
+      .nfts()
+      .create({
+          uri: uri,
+          name: "My NFT",
+          sellerFeeBasisPoints: 500, // Represents 5.00%.
+          maxSupply: toBigNumber(1),
+      })
+      .run();
+```
+
+- [Metaplex JavaScript SDK](https://github.com/metaplex-foundation/js)
+- [Examples - 256hax - solana-anchor-react-minimal-example/tree/main/scripts/metaplex/latest/src](https://github.com/256hax/solana-anchor-react-minimal-example/tree/main/scripts/metaplex/latest/src)
 
 ## Reference
 - [Solana Cookbook - Non Fungible Tokens (NFTs)](https://solanacookbook.com/references/nfts.html#how-to-create-an-nft)
