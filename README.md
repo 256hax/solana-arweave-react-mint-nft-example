@@ -30,7 +30,7 @@ It will show log at "Console" menu.
 ### Metadata
 - [Web3.js - Arweave](https://docs.th8ta.org/arconnect/arweave-js)
 - [Docs - Metaplex Token Metadata Standard](https://docs.metaplex.com/token-metadata/Versions/v1.0.0/nft-standard)
-- [Docs - Phantom Non-Fungible Tokens (NFTs)](https://docs.phantom.app/best-practices/tokens/non-fungible-tokens)
+- [Docs - Phantom Non-Fungible Tokens (NFTs)](https://docs.phantom.app/best-practices/tokens/collectibles-nfts-and-semi-fungibles)
 
 ## Reinstall Pacakges
 If you need to reinstall, run following
@@ -172,10 +172,9 @@ Write only this code for upload image and metadata! like this:
 ```
 
 - [Metaplex JavaScript SDK](https://github.com/metaplex-foundation/js)
-- [Examples - 256hax - solana-anchor-react-minimal-example/tree/main/scripts/metaplex/latest/src](https://github.com/256hax/solana-anchor-react-minimal-example/tree/main/scripts/metaplex/latest/src)
+- [Metaplex Examples - 256hax GitHub](https://github.com/256hax/solana-anchor-react-minimal-example/tree/main/scripts/metaplex)
 
 ## Reference
 - [Solana Cookbook - Non Fungible Tokens (NFTs)](https://solanacookbook.com/references/nfts.html#how-to-create-an-nft)
 - [Solana x Anchor x React Minimal Example](https://github.com/256hax/solana-anchor-react-minimal-example)
 - [Web3.js - solana-labs wallet-adapter](https://github.com/solana-labs/wallet-adapter)
-- [Web3.js - Metaplex actions mintNFT](https://metaplex-foundation.github.io/js/modules/actions.html#mintNFT)
