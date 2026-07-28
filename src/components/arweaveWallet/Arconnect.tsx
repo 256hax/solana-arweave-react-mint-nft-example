@@ -69,7 +69,10 @@ export const Arconnect = () => {
   const airdrop = async() => {
     const address = await window.arweaveWallet.getActiveAddress();
     // 100 AR = 100000000000000 Winston
-    const response = await arweave.api.get('mint/' + address + '/100000000000000');
+    const response = await fetch(
+      `${arweave.api.config.protocol}://${arweave.api.config.host}/mint/${address}/100000000000000`,
+      { mode: 'no-cors' }
+    );
     console.log(response);
   };
 
